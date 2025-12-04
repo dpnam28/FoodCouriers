@@ -1,0 +1,14 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  datasource:
+    url: ${DBMS_CONNECTION_URL:jdbc:mysql://localhost:3308/xxx}
+    username: ${DBMS_USERNAME:root}
+    password: ${DBMS_PASSWORD:1234}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
