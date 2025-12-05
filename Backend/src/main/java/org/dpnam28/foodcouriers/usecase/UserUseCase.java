@@ -13,10 +13,10 @@ public class UserUseCase {
     }
 
     public User createUser(User user) {
-        return null;
+        return userRepository.save(user);
     }
 
-    public User updateUser(User user) {
-        return null;
+    public User updateUser(Long id, User user) {
+        return userRepository.update(id, user);
     }
 }

@@ -5,6 +5,7 @@ import lombok.Setter;
 
 @Getter
 public enum ErrorCode {
+    INTERNAL_SERVER_ERROR("Internal server error", 500),
     USER_NOT_FOUND("User not found", 404),
     USER_ALREADY_EXISTS("User already exists", 409);
 

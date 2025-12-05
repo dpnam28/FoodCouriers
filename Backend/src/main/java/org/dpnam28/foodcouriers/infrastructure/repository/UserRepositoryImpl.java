@@ -18,11 +18,18 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User save(User user) {
-        return null;
+        return jpaUserRepository.save(user);
     }
 
     @Override
-    public User update(User user) {
-        return null;
+    public User update(Long id, User user) {
+        User userToUpdate = jpaUserRepository.findById(id).orElseThrow(() -> new RuntimeException("User not found"));
+        userToUpdate.setPassword(user.getPassword());
+        userToUpdate.setFullName(user.getFullName());
+        userToUpdate.setPhoneNumber(user.getPhoneNumber());
+        userToUpdate.setAddress(user.getAddress());
+        userToUpdate.setProfileImage(user.getProfileImage());
+        userToUpdate.setRole(user.getRole());
+        return jpaUserRepository.save(userToUpdate);
     }
 }

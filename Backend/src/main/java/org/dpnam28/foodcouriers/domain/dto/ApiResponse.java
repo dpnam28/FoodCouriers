@@ -1,4 +1,4 @@
-package org.dpnam28.foodcouriers.presentation.dto.response;
+package org.dpnam28.foodcouriers.domain.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
