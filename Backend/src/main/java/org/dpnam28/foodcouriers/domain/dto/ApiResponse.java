@@ -15,4 +15,12 @@ public class ApiResponse <T>{
     private int code;
     private String message;
     private T data;
+
+    public static <T> ApiResponse<T> apiResponseSuccess(String message,T data) {
+        return ApiResponse.<T>builder()
+                .code(200)
+                .message(message)
+                .data(data)
+                .build();
+    }
 }

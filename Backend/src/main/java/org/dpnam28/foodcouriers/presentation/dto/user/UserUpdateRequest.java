@@ -1,6 +1,4 @@
-package org.dpnam28.foodcouriers.presentation.dto.request;
-
-import jakarta.validation.constraints.Email;
+package org.dpnam28.foodcouriers.presentation.dto.user;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,11 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserCreationRequest {
+public class UserUpdateRequest {
 
-    @NotBlank(message = "Email is required")
-    @Email(message = "Email is not valid")
-    private String email;
     @NotBlank(message = "Password is required")
     private String password;
     @NotBlank(message = "Full name is required")
@@ -27,4 +22,6 @@ public class UserCreationRequest {
     private String profileImage;
     @NotBlank(message = "Role is required")
     private String role;
+    @NotBlank(message = "Location is required")
+    private Long locationId;
 }

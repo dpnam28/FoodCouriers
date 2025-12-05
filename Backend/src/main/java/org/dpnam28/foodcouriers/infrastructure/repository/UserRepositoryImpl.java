@@ -2,6 +2,7 @@ package org.dpnam28.foodcouriers.infrastructure.repository;
 
 import lombok.RequiredArgsConstructor;
 
+import org.dpnam28.foodcouriers.domain.entity.Location;
 import org.dpnam28.foodcouriers.domain.entity.User;
 import org.dpnam28.foodcouriers.domain.repository.UserRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -15,7 +16,7 @@ interface JpaUserRepository extends JpaRepository<User, Long> {
 public class UserRepositoryImpl implements UserRepository {
 
     private final JpaUserRepository jpaUserRepository;
-
+    private final JpaLocationRepository jpaLocationRepository;
     @Override
     public User save(User user) {
         return jpaUserRepository.save(user);
@@ -30,6 +31,7 @@ public class UserRepositoryImpl implements UserRepository {
         userToUpdate.setAddress(user.getAddress());
         userToUpdate.setProfileImage(user.getProfileImage());
         userToUpdate.setRole(user.getRole());
+        userToUpdate.setLocation(user.getLocation());
         return jpaUserRepository.save(userToUpdate);
     }
 }

@@ -33,4 +33,7 @@ public class User {
 
     @Column(nullable = false, columnDefinition = "VARCHAR(255) CHECK (role IN ('ROLE_COURIER', 'ROLE_CUSTOMER', 'ROLE_RESTAURANT'))")
     private String role;
+
+    @ManyToOne
+    private Location location;
 }
