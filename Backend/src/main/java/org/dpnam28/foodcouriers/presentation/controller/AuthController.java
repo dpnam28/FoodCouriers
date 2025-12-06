@@ -1,5 +1,6 @@
 package org.dpnam28.foodcouriers.presentation.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.dpnam28.foodcouriers.domain.dto.ApiResponse;
 import org.dpnam28.foodcouriers.domain.entity.User;
@@ -21,7 +22,7 @@ public class AuthController {
     private final AuthMapper authMapper;
 
     @PostMapping("/login")
-    public ApiResponse<AuthLoginResponse> login(@RequestBody AuthLoginRequest user){
+    public ApiResponse<AuthLoginResponse> login(@RequestBody @Valid AuthLoginRequest user){
         User userLogin = authUseCase.login(user.getEmail(), user.getPassword());
         AuthLoginResponse response = authMapper.toAuthLoginResponse(userLogin);
         return ApiResponse.apiResponseSuccess("Login succeeded", response);

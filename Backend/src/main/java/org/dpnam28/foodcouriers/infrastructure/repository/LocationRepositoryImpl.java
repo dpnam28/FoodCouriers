@@ -2,6 +2,8 @@ package org.dpnam28.foodcouriers.infrastructure.repository;
 
 import lombok.RequiredArgsConstructor;
 import org.dpnam28.foodcouriers.domain.entity.Location;
+import org.dpnam28.foodcouriers.domain.exception.AppException;
+import org.dpnam28.foodcouriers.domain.exception.ErrorCode;
 import org.dpnam28.foodcouriers.domain.repository.LocationRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -26,7 +28,7 @@ public class LocationRepositoryImpl implements LocationRepository {
     @Override
     public Location update(Long id, Location location) {
         Location locationToUpdate = jpaLocationRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Location not found"));
+                .orElseThrow(() -> new AppException(ErrorCode.LOCATION_NOT_FOUND));
         locationToUpdate.setCity(location.getCity());
         return jpaLocationRepository.save(locationToUpdate);
     }

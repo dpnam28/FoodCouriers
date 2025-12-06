@@ -1,5 +1,6 @@
 package org.dpnam28.foodcouriers.presentation.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.dpnam28.foodcouriers.domain.dto.ApiResponse;
@@ -29,7 +30,7 @@ public class LocationController {
 
     @PutMapping("/{id}")
     public ApiResponse<LocationResponse> update(@PathVariable Long id,
-                                                @RequestBody LocationUpdateRequest request) {
+                                                @RequestBody @Valid LocationUpdateRequest request) {
         Location location = locationMapper.toLocation(request);
         Location locationUpdated = locationUseCase.update(id, location);
         LocationResponse locationResponse = locationMapper.toLocationResponse(locationUpdated);

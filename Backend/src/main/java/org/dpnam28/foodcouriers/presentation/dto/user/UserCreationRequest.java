@@ -2,6 +2,7 @@ package org.dpnam28.foodcouriers.presentation.dto.user;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -28,6 +29,6 @@ public class UserCreationRequest {
     private String profileImage;
     @NotBlank(message = "Role is required")
     private String role;
-    @NotBlank(message = "Location is required")
+    @NotNull(message = "Location is required")
     private Long locationId;
 }

@@ -1,5 +1,6 @@
 package org.dpnam28.foodcouriers.presentation.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.dpnam28.foodcouriers.domain.entity.Location;
@@ -21,7 +22,7 @@ public class UserController {
     private final UserMapper userMapper;
 
     @PostMapping
-    public ApiResponse<UserResponse> save(@RequestBody UserCreationRequest request) {
+    public ApiResponse<UserResponse> save(@RequestBody @Valid UserCreationRequest request) {
         User user = userMapper.toUser(request);
         User userCreation = userUseCase.createUser(user, request.getLocationId());
         UserResponse userResponse = userMapper.toUserResponse(userCreation);
@@ -29,7 +30,7 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ApiResponse<UserResponse> update(@PathVariable Long id, @RequestBody UserUpdateRequest request) {
+    public ApiResponse<UserResponse> update(@PathVariable Long id, @RequestBody @Valid UserUpdateRequest request) {
         User user = userMapper.toUser(request);
         Long locationId = request.getLocationId();
         User userCreation = userUseCase.updateUser(id, user, locationId);
