@@ -29,11 +29,18 @@ public class User {
     @Column(nullable = false)
     private String address;
 
-    private String profileImage;
-
     @Column(nullable = false, columnDefinition = "VARCHAR(255) CHECK (role IN ('ROLE_COURIER', 'ROLE_CUSTOMER', 'ROLE_RESTAURANT'))")
     private String role;
 
     @ManyToOne
     private Location location;
+
+    @OneToOne(mappedBy = "user")
+    private Courier courier;
+
+    @OneToOne(mappedBy = "user")
+    private Restaurant restaurant;
+
+    @OneToOne(mappedBy = "user")
+    private Customer customer;
 }
