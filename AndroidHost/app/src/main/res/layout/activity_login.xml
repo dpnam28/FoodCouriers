@@ -13,7 +13,7 @@
         android:layout_height="360dp"
         android:contentDescription="@string/image"
         android:scaleType="centerCrop"
-        android:src="@drawable/bg_login_view"
+        android:src="@drawable/img_login_background"
         app:layout_constraintBottom_toTopOf="@id/cardContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"

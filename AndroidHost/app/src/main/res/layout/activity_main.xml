@@ -8,9 +8,8 @@
     android:layout_height="match_parent"
     android:background="@android:color/white">
 
-    <!-- Nội dung scroll được -->
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/scrollContent"
+        android:id="@+id/scrollContentMain"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fillViewport="true"
@@ -66,7 +65,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Thanh search -->
             <LinearLayout
                 android:id="@+id/searchBar"
                 android:layout_width="match_parent"
@@ -154,7 +152,7 @@
                         android:text="@string/buy_now"
                         android:textSize="10sp"
                         android:textStyle="bold"
-                        android:background="@drawable/bg_buy_now"
+                        android:background="@drawable/bg_button_secondary"
                         android:textColor="@color/primary"
                         tools:ignore="SmallSp" />
                 </LinearLayout>
@@ -179,7 +177,7 @@
                         android:id="@+id/chipBurger"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:background="@drawable/bg_chip_selected"
+                        android:background="@drawable/bg_button_primary"
                         android:gravity="center_vertical"
                         android:paddingStart="8dp"
                         android:paddingEnd="20dp"
@@ -205,7 +203,7 @@
                         android:id="@+id/chipPizza"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:background="@drawable/bg_chip_unselected"
+                        android:background="@drawable/bg_button_outline_primary"
                         android:gravity="center_vertical"
                         android:paddingStart="8dp"
                         android:paddingEnd="20dp"
@@ -231,7 +229,7 @@
                         android:id="@+id/chipSandwich"
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
-                        android:background="@drawable/bg_chip_unselected"
+                        android:background="@drawable/bg_button_outline_primary"
                         android:gravity="center_vertical"
                         android:paddingStart="8dp"
                         android:paddingEnd="20dp">
@@ -267,6 +265,9 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
+                    <View
+                        android:layout_width="3dp"
+                        android:layout_height="0dp"/>
                     <!-- Card 1 -->
                     <androidx.cardview.widget.CardView
                         android:layout_width="160dp"
@@ -548,7 +549,7 @@
                         android:layout_centerVertical="true"
                         android:src="@drawable/img_pepper_pizza"
                         android:scaleType="centerCrop"
-                        android:background="@drawable/bg_menu_image"
+                        android:background="@drawable/bg_button_secondary"
                         android:contentDescription="@string/pizza" />
 
                     <TextView
@@ -602,9 +603,7 @@
         android:id="@+id/bottomNav"
         android:layout_width="0dp"
         android:layout_height="74dp"
-        android:layout_marginStart="0dp"
-        android:layout_marginEnd="0dp"
-        android:layout_marginBottom="0dp"
+        android:layout_margin="16dp"
         app:cardCornerRadius="22dp"
         app:cardElevation="8dp"
         app:cardUseCompatPadding="false"
@@ -621,29 +620,32 @@
             android:paddingStart="24dp"
             android:paddingEnd="24dp">
 
-            <!-- Home active -->
             <LinearLayout
                 android:id="@+id/navHome"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_weight="3"
                 android:layout_marginEnd="50dp"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"
+                android:background="@drawable/bg_button_secondary"
+                android:paddingVertical="5dp"
                 tools:ignore="UseCompoundDrawables">
 
-                <ImageView
+                <ImageButton
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_home_filled"
+                    android:background="@drawable/ic_home_filled"
                     android:contentDescription="@string/home" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="Home"
+                    android:text="@string/home"
                     android:textSize="12sp"
+                    android:layout_marginStart="5dp"
                     android:textColor="#000000" />
             </LinearLayout>
 
@@ -656,11 +658,11 @@
                 android:orientation="vertical"
                 android:gravity="center">
 
-                <ImageView
+                <ImageButton
+                    android:id="@+id/btnCart"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:src="@drawable/ic_cart"
-                    app:tint="@color/primary"
+                    android:background="@drawable/ic_cart"
                     android:contentDescription="@string/cart" />
             </LinearLayout>
 

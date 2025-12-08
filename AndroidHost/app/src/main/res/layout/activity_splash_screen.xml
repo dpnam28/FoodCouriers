@@ -12,7 +12,7 @@
         android:id="@+id/backgroundImage"
         android:layout_width="420dp"
         android:layout_height="700dp"
-        android:contentDescription="image"
+        android:contentDescription="@string/image"
         android:scaleType="fitStart"
         app:layout_constraintBottom_toBottomOf="@+id/foregroundIcon"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,13 +20,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/splash_background" />
+        app:srcCompat="@drawable/img_splash_background" />
 
     <ImageView
         android:id="@+id/foregroundIcon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="image"
+        android:contentDescription="@string/image"
         android:elevation="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

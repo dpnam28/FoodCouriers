@@ -1,6 +1,7 @@
 package org.dpnam28.foodcouriers.ui.login;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -60,15 +61,20 @@ public class LoginActivity extends AppCompatActivity {
             String password = edtPasswordLogin.getText().toString();
 
             if (email.isEmpty() || password.isEmpty()) {
-                ToastUtils.showTopToast(this, "Please fill all fields", ToastUtils.TYPE_ERROR);
+                ToastUtils.showTopToast(this, "Vui lòng nhập đầy đủ thông tin", ToastUtils.TYPE_ERROR);
             } else {
                 if (email.equals("admin@gmail.com") && password.equals("admin")) {
-                    ToastUtils.showTopToast(this, "Login successful", ToastUtils.TYPE_SUCCESS);
+                    ToastUtils.showTopToast(this, "Đăng nhập thành công", ToastUtils.TYPE_SUCCESS);
+
+                    SharedPreferences.Editor editor = getSharedPreferences("MyPrefs", MODE_PRIVATE).edit();
+                    editor.putBoolean("isLoggedIn", true);
+                    editor.apply();
+
                     Intent intent = new Intent(this, MainActivity.class);
                     startActivity(intent);
                     finish();
                 } else {
-                    ToastUtils.showTopToast(this, "Login failed", ToastUtils.TYPE_ERROR);
+                    ToastUtils.showTopToast(this, "Đăng nhập thất bại", ToastUtils.TYPE_ERROR);
                 }
             }
         });

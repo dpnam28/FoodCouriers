@@ -18,4 +18,6 @@
     <string name="banner">Banner</string>
     <string name="message">Message</string>
     <string name="back">Back</string>
+    <string name="decrease">Decrease</string>
+    <string name="increase">Increase</string>
 </resources>

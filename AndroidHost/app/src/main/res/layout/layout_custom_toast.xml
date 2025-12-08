@@ -4,7 +4,7 @@
     android:id="@+id/toast_root"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_custom_toast"
+    android:background="@drawable/bg_button_outline_primary"
     android:gravity="center_vertical"
     android:orientation="horizontal"
     android:padding="12dp">

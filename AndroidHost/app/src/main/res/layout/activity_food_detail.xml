@@ -27,7 +27,7 @@
         android:layout_height="36dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/bg_back_button"
+        android:background="@drawable/bg_back_button_dark"
         android:src="@drawable/ic_back"
         android:scaleType="centerInside"
         app:tint="@color/primary"
@@ -133,14 +133,13 @@ In a medium bowl, add ground chicken, breadcrumbs, mayonnaise, onions, parsley, 
 
 Preheat grill to medium-high heat and oil the grates. Form the mixture into 4–6 equal patties." />
 
-            <!-- Button Add To Cart -->
             <Button
                 android:id="@+id/btnAddToCart"
                 android:layout_width="0dp"
                 android:layout_height="57dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="8dp"
-                android:background="@drawable/bg_cta_button"
+                android:background="@drawable/bg_button_primary"
                 android:text="Add To Cart"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
