@@ -1,4 +1,4 @@
-package org.dpnam28.foodcouriers.ui.main;
+package org.dpnam28.foodcouriers.ui.fooddetail;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,27 +8,27 @@ import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.dpnam28.foodcouriers.R;
-import org.dpnam28.foodcouriers.ui.fooddetail.FoodDetailActivity;
+import org.dpnam28.foodcouriers.ui.main.MainActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class FoodDetailActivity extends AppCompatActivity {
 
-    ImageButton imgBurger1;
+    ImageButton btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-
+        setContentView(R.layout.activity_food_detail);
         assignView();
 
-        imgBurger1.setOnClickListener(v -> {
-            Intent intent = new Intent(this, FoodDetailActivity.class);
+        btnBack.setOnClickListener(v -> {
+            Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
+            finish();
         });
     }
 
     private void assignView(){
-        imgBurger1 = findViewById(R.id.imgBurger1);
+        btnBack = findViewById(R.id.btnBack);
     }
 }

@@ -282,13 +282,14 @@
                             android:padding="8dp">
 
                             <!-- Ảnh burger -->
-                            <ImageView
+                            <ImageButton
                                 android:id="@+id/imgBurger1"
                                 android:layout_width="match_parent"
                                 android:layout_height="80dp"
                                 android:layout_marginTop="8dp"
                                 android:scaleType="centerInside"
                                 android:src="@drawable/img_burger1"
+                                android:background="@android:color/transparent"
                                 android:contentDescription="@string/burger_image" />
 
                             <!-- Tên + mô tả -->
