@@ -20,4 +20,7 @@
     <string name="back">Back</string>
     <string name="decrease">Decrease</string>
     <string name="increase">Increase</string>
+    <string name="notifications">Notifications</string>
+    <string name="edit">Sửa thông tin</string>
+    <string name="log_out">Đăng xuất</string>
 </resources>

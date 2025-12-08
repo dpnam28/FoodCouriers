@@ -12,11 +12,12 @@ import androidx.core.widget.NestedScrollView;
 import org.dpnam28.foodcouriers.R;
 import org.dpnam28.foodcouriers.ui.cart.CartActivity;
 import org.dpnam28.foodcouriers.ui.fooddetail.FoodDetailActivity;
+import org.dpnam28.foodcouriers.ui.profile.ProfileActivity;
 
 public class MainActivity extends AppCompatActivity {
 
-    ImageButton imgBurger1, btnCart;
-    LinearLayout navHome;
+    ImageButton imgBurger1;
+    LinearLayout navHome, navCart, navProfile;
     NestedScrollView scrollContentMain;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +32,12 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         });
         navHome.setOnClickListener(v -> scrollContentMain.smoothScrollTo(0, 0));
-        btnCart.setOnClickListener(v -> {
+        navCart.setOnClickListener(v -> {
             Intent intent = new Intent(this, CartActivity.class);
+            startActivity(intent);
+        });
+        navProfile.setOnClickListener(v -> {
+            Intent intent = new Intent(this, ProfileActivity.class);
             startActivity(intent);
         });
     }
@@ -41,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
         imgBurger1 = findViewById(R.id.imgBurger1);
         navHome = findViewById(R.id.navHome);
         scrollContentMain = findViewById(R.id.scrollContentMain);
-        btnCart = findViewById(R.id.btnCart);
+        navCart = findViewById(R.id.navCart);
+        navProfile = findViewById(R.id.navProfile);
     }
 }

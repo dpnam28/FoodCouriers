@@ -22,10 +22,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:layout_marginTop="16dp"
             android:paddingStart="24dp"
             android:paddingEnd="24dp">
 
-            <!-- Top bar: back/menu, address, avatar -->
             <LinearLayout
                 android:id="@+id/topBar"
                 android:layout_width="match_parent"
@@ -527,7 +527,6 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Menu item: Pepper Pizza -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardPepperPizza"
                 android:layout_width="match_parent"
@@ -590,7 +589,6 @@
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- thêm khoảng trống cho đẹp -->
             <View
                 android:layout_width="match_parent"
                 android:layout_height="16dp" />
@@ -598,7 +596,6 @@
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <!-- Bottom Navigation (custom) -->
     <androidx.cardview.widget.CardView
         android:id="@+id/bottomNav"
         android:layout_width="0dp"
@@ -620,11 +617,12 @@
             android:paddingStart="24dp"
             android:paddingEnd="24dp">
 
+            <!-- Home -->
             <LinearLayout
                 android:id="@+id/navHome"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="3"
+                android:layout_weight="2"
                 android:layout_marginEnd="50dp"
                 android:orientation="horizontal"
                 android:gravity="center"
@@ -655,23 +653,27 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
                 android:orientation="vertical"
                 android:gravity="center">
 
-                <ImageButton
+                <ImageView
                     android:id="@+id/btnCart"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:background="@drawable/ic_cart"
+                    android:src="@drawable/ic_cart"
                     android:contentDescription="@string/cart" />
             </LinearLayout>
 
             <!-- Profile -->
             <LinearLayout
                 android:id="@+id/navProfile"
-                android:layout_width="40dp"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
                 android:orientation="vertical"
                 android:gravity="center">
 
