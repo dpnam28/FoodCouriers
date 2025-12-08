@@ -1,8 +1,23 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.FoodCouriers" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Main theme customizations -->
-    </style>    <style name="Theme.FoodCouriers" parent="Base.Theme.FoodCouriers" />
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/primary</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/pink</item>
+        <item name="colorSecondaryVariant">@color/pink</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+
+        <!-- Set cursor and text selection-->
+        <item name="colorControlActivated">@color/primary</item>
+        <item name="android:textColorHighlight">@color/pink</item>
+    </style>
+
+    <style name="Theme.FoodCouriers" parent="Base.Theme.FoodCouriers" />
 
     <style name="Theme.FoodCouriers.SplashScreen" parent="Theme.FoodCouriers">
         <item name="android:windowFullscreen">true</item>

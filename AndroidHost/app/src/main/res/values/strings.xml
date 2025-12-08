@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">FoodCouriers</string>
+    <string name="image">Image</string>
+    <string name="register">Đăng ký</string>
+    <string name="login">Đăng nhập</string>
+    <string name="full_name">Họ tên</string>
+    <string name="email">Email</string>
+    <string name="password">Mật khẩu</string>
 </resources>
