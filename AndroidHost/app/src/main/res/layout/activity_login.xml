@@ -105,7 +105,7 @@
                     android:textSize="14sp" />
 
                 <EditText
-                    android:id="@+id/edtEmail"
+                    android:id="@+id/edtEmailRegister"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="8dp"
@@ -128,7 +128,7 @@
                     android:textSize="14sp" />
 
                 <EditText
-                    android:id="@+id/edtPassword"
+                    android:id="@+id/edtPasswordRegister"
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:layout_marginTop="8dp"
