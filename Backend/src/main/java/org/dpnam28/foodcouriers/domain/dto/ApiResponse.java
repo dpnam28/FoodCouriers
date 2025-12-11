@@ -7,9 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.dpnam28.foodcouriers.domain.exception.ErrorCode;
 
-import java.util.Map;
-import java.util.Objects;
-
 @Data
 @Builder
 @AllArgsConstructor

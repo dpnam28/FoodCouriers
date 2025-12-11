@@ -3,6 +3,8 @@ package org.dpnam28.foodcouriers.domain.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -43,4 +45,7 @@ public class User {
 
     @OneToOne(mappedBy = "user")
     private Customer customer;
+
+    @OneToMany(mappedBy = "user")
+    private List<CartItem> cartItems;
 }

@@ -1,7 +1,6 @@
 package org.dpnam28.foodcouriers.domain.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.util.List;
@@ -12,25 +11,24 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Restaurant {
-
+public class Food {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @OneToOne
-    private User user;
 
     @Column(nullable = false)
     private String name;
 
     private String description;
 
-    private String bannerImage;
+    @ManyToOne
+    private Category category;
 
     @Column(nullable = false)
-    private Double deliveryFee;
+    private Double price;
 
-    @OneToMany(mappedBy = "restaurant")
-    private List<Order> orders;
+    private String image;
+
+    @Column(nullable = false, columnDefinition = "BOOLEAN DEFAULT TRUE")
+    private boolean isActive;
 }

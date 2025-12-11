@@ -3,26 +3,25 @@ package org.dpnam28.foodcouriers.domain.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
-
 @Entity
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Customer {
+public class CartItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
+    @ManyToOne
+    private Food food;
+
+    @ManyToOne
     private User user;
 
-    @Column(nullable = false, columnDefinition = "INTEGER DEFAULT 0")
-    private Integer totalOrders;
+    private Integer quantity;
 
-    @OneToMany(mappedBy = "customer")
-    private List<Order> orders;
+    private Double totalPrice;
 }
