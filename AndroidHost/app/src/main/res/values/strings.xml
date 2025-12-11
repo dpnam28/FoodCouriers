@@ -23,4 +23,7 @@
     <string name="notifications">Notifications</string>
     <string name="edit">Sửa thông tin</string>
     <string name="log_out">Đăng xuất</string>
+    <string name="order_success">Order success</string>
+    <string name="submit">Xác nhận</string>
+    <string name="order_completed">Cảm ơn bạn!\nBạn đã đặt hàng thành công</string>
 </resources>

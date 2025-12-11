@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodCouriers">
         <activity
+            android:name=".FinishScreenActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.profile.ProfileActivity"
             android:exported="false" />
         <activity

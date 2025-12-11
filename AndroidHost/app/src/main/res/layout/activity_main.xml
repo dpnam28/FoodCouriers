@@ -632,10 +632,10 @@
                 android:paddingVertical="5dp"
                 tools:ignore="UseCompoundDrawables">
 
-                <ImageButton
+                <ImageView
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:background="@drawable/ic_home_filled"
+                    android:src="@drawable/ic_home_filled"
                     android:contentDescription="@string/home" />
 
                 <TextView
