@@ -26,7 +26,6 @@ public class UserCreationRequest {
     private String phoneNumber;
     @NotBlank(message = "Address is required")
     private String address;
-    private String profileImage;
     @NotBlank(message = "Role is required")
     private String role;
     @NotNull(message = "Location is required")

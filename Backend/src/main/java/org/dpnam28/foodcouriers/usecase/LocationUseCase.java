@@ -16,7 +16,7 @@ public class LocationUseCase {
         return locationRepository.getAll();
     }
 
-    public Location update(Long id, Location location) {
-        return locationRepository.update(id, location);
+    public Location findById(Long id) {
+        return locationRepository.findById(id);
     }
 }

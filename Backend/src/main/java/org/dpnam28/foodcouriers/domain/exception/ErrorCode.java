@@ -11,6 +11,7 @@ public enum ErrorCode {
     INVALID_PASSWORD("Invalid password", 400),
     EMAIL_NOT_VALID("Email is not valid", 400),
     ARGUMENT_IS_REQUIRED("{arg} is required", 400),
+    RESTAURANT_NOT_FOUND("Restaurant not found", 404),
     ;
     private final String message;
     private final int code;

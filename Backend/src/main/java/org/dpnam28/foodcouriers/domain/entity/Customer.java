@@ -15,9 +15,13 @@ public class Customer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "customer_id")
     private Long id;
 
     @OneToOne
+    @MapsId
+    @JoinColumn(name = "customer_id")
+    @ToString.Exclude
     private User user;
 
     @Column(nullable = false, columnDefinition = "INTEGER DEFAULT 0")

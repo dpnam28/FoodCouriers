@@ -15,14 +15,15 @@ import java.util.List;
 public class Restaurant {
 
     @Id
+    @Column(name = "restaurant_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne
+    @MapsId
+    @JoinColumn(name = "restaurant_id")
+    @ToString.Exclude
     private User user;
-
-    @Column(nullable = false)
-    private String name;
 
     private String description;
 

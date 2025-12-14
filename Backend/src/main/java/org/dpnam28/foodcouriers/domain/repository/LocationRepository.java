@@ -7,6 +7,5 @@ import java.util.Optional;
 
 public interface LocationRepository {
     List<Location> getAll();
-    Location update(Long id, Location location);
-    Optional<Location> findById(Long id);
+    Location findById(Long id);
 }

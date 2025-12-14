@@ -26,15 +26,8 @@ public class LocationRepositoryImpl implements LocationRepository {
     }
 
     @Override
-    public Location update(Long id, Location location) {
-        Location locationToUpdate = jpaLocationRepository.findById(id)
+    public Location findById(Long id) {
+        return jpaLocationRepository.findById(id)
                 .orElseThrow(() -> new AppException(ErrorCode.LOCATION_NOT_FOUND));
-        locationToUpdate.setCity(location.getCity());
-        return jpaLocationRepository.save(locationToUpdate);
-    }
-
-    @Override
-    public Optional<Location> findById(Long id) {
-        return jpaLocationRepository.findById(id);
     }
 }
