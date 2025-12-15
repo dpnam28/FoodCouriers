@@ -65,105 +65,199 @@
 
             </com.google.android.material.tabs.TabLayout>
 
-            <LinearLayout
+            <androidx.core.widget.NestedScrollView
                 android:id="@+id/layoutRegister"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@id/tabContainer"
+                android:layout_height="0dp"
+                android:fillViewport="true"
+                android:overScrollMode="ifContentScrolls"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tabContainer">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="24dp"
-                    android:text="@string/full_name"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    android:orientation="vertical"
+                    android:paddingBottom="16dp">
 
-                <EditText
-                    android:id="@+id/edtFullNameRegister"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="8dp"
-                    android:autofillHints="John Doe"
-                    android:background="@drawable/bg_input"
-                    android:inputType="text"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:textColor="@color/gray"
-                    android:textSize="14sp"
-                    tools:ignore="LabelFor" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:text="@string/full_name"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/email"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    <EditText
+                        android:id="@+id/edtFullNameRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="8dp"
+                        android:autofillHints="John Doe"
+                        android:background="@drawable/bg_input"
+                        android:inputType="textPersonName"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:textColor="@color/gray"
+                        android:textSize="14sp"
+                        tools:ignore="LabelFor" />
 
-                <EditText
-                    android:id="@+id/edtEmailRegister"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="8dp"
-                    android:autofillHints="example@gmail.com"
-                    android:background="@drawable/bg_input"
-                    android:inputType="textEmailAddress"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:textColor="@color/gray"
-                    android:textSize="14sp"
-                    tools:ignore="LabelFor" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/email"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
 
-                <TextView
-                    android:id="@+id/labelPassword"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/password"
-                    android:textColor="@color/black"
-                    android:textSize="14sp" />
+                    <EditText
+                        android:id="@+id/edtEmailRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="8dp"
+                        android:autofillHints="example@gmail.com"
+                        android:background="@drawable/bg_input"
+                        android:inputType="textEmailAddress"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:textColor="@color/gray"
+                        android:textSize="14sp"
+                        tools:ignore="LabelFor" />
 
-                <EditText
-                    android:id="@+id/edtPasswordRegister"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="8dp"
-                    android:autofillHints="***********"
-                    android:background="@drawable/bg_input"
-                    android:inputType="textPassword"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:textColor="@color/gray"
-                    android:textSize="16sp"
-                    tools:ignore="LabelFor" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/password"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
 
-                <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/btnSignUp"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="24dp"
-                    android:background="@drawable/bg_button_primary"
-                    android:text="@string/register"
-                    android:textAllCaps="false"
-                    android:textColor="@android:color/white"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    <EditText
+                        android:id="@+id/edtPasswordRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="8dp"
+                        android:autofillHints="***********"
+                        android:background="@drawable/bg_input"
+                        android:inputType="textPassword"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:textColor="@color/gray"
+                        android:textSize="16sp"
+                        tools:ignore="LabelFor" />
 
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/phone_number"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/edtPhoneRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/bg_input"
+                        android:inputType="phone"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:textColor="@color/gray"
+                        android:textSize="14sp"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/address"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/edtAddressRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/bg_input"
+                        android:inputType="textPostalAddress"
+                        android:minHeight="48dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:textColor="@color/gray"
+                        android:textSize="14sp"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/role"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <Spinner
+                        android:id="@+id/spinnerRoleRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/bg_input"
+                        android:entries="@array/register_roles_display"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:spinnerMode="dropdown"
+                        android:popupBackground="@color/white"
+                        tools:ignore="LabelFor" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:text="@string/city"
+                        android:textColor="@color/black"
+                        android:textSize="14sp" />
+
+                    <Spinner
+                        android:id="@+id/spinnerCityRegister"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/bg_input"
+                        android:inputType="number"
+                        android:entries="@array/register_cities_display"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="16dp"
+                        android:spinnerMode="dropdown"
+                        android:popupBackground="@color/white"
+                        tools:ignore="LabelFor" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnSignUp"
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="24dp"
+                        android:background="@drawable/bg_button_primary"
+                        android:text="@string/register"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
 
             <LinearLayout
                 android:id="@+id/layoutLogin"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:orientation="vertical"
                 android:visibility="gone"
-                app:layout_constraintTop_toBottomOf="@id/tabContainer"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tabContainer">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -222,6 +316,18 @@
                     android:textStyle="bold" />
 
             </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progressLoading"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/primary"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>

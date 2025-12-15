@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="register_roles_display">
+        <item>@string/role_customer</item>
+        <item>@string/role_restaurant</item>
+        <item>@string/role_courier</item>
+    </string-array>
+
+    <string-array name="register_roles_values">
+        <item>ROLE_CUSTOMER</item>
+        <item>ROLE_RESTAURANT</item>
+        <item>ROLE_COURIER</item>
+    </string-array>
+
+    <string-array name="register_cities_display">
+        <item>@string/hanoi</item>
+        <item>@string/hochiminh</item>
+    </string-array>
+
+    <string-array name="register_city_values">
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+</resources>

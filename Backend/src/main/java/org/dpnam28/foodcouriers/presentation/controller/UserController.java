@@ -40,4 +40,11 @@ public class UserController {
         UserResponse userResponse = userMapper.toUserResponse(userCreation);
         return ApiResponse.apiResponseSuccess("Update account succeeded", userResponse);
     }
+
+    @GetMapping("/{id}")
+    public ApiResponse<UserResponse> findUserById(@PathVariable Long id) {
+        User user = userUseCase.findById(id);
+        UserResponse userResponse = userMapper.toUserResponse(user);
+        return ApiResponse.apiResponseSuccess("Get account succeeded", userResponse);
+    }
 }

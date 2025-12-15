@@ -5,15 +5,15 @@ server:
 
 spring:
   datasource:
-    url: ${DBMS_CONNECTION_URL:jdbc:mysql://localhost:3308/xxx}
-    username: ${DBMS_USERNAME:root}
-    password: ${DBMS_PASSWORD:1234}
+    url: jdbc:mysql://mysql-76044e7-dnam281224-6b2a.i.aivencloud.com:19174/foodcouriers?useSSL=false&serverTimezone=Asia/Bangkok&allowPublicKeyRetrieval=true
+    username: avnadmin
+    password: AVNS_MGOpJQavphJGbHEHiH3
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: update
-    defer-datasource-initialization: true
-#  sql:
-#    init:
-#      mode: always
-#      encoding: utf-8
+  #   defer-datasource-initialization: true
+  # sql:
+  #   init:
+  #     mode: always
+  #     encoding: utf-8

@@ -1,16 +1,21 @@
 package org.dpnam28.foodcouriers.usecase;
 
-import lombok.RequiredArgsConstructor;
+import java.util.Objects;
+
 import org.dpnam28.foodcouriers.domain.entity.Courier;
 import org.dpnam28.foodcouriers.domain.entity.Customer;
 import org.dpnam28.foodcouriers.domain.entity.Restaurant;
 import org.dpnam28.foodcouriers.domain.entity.User;
 import org.dpnam28.foodcouriers.domain.exception.AppException;
 import org.dpnam28.foodcouriers.domain.exception.ErrorCode;
-import org.dpnam28.foodcouriers.domain.repository.*;
+import org.dpnam28.foodcouriers.domain.repository.CourierRepository;
+import org.dpnam28.foodcouriers.domain.repository.CustomerRepository;
+import org.dpnam28.foodcouriers.domain.repository.LocationRepository;
+import org.dpnam28.foodcouriers.domain.repository.RestaurantRepository;
+import org.dpnam28.foodcouriers.domain.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Objects;
+import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
@@ -26,7 +31,9 @@ public class UserUseCase {
             throw new AppException(ErrorCode.USER_ALREADY_EXISTS);
         }
         String role = user.getRole();
+        var location = locationRepository.findById(locationId);
         var savedUser = userRepository.save(user);
+        savedUser.setLocation(location);
         switch (role) {
             case "ROLE_CUSTOMER" -> createCustomerProfile(savedUser);
             case "ROLE_RESTAURANT" -> createRestaurantProfile(savedUser);
@@ -71,5 +78,9 @@ public class UserUseCase {
             restaurantUpdate.setDeliveryFee(restaurant.getDeliveryFee());
         }
         return userRepository.save(userUpdate);
+    }
+
+    public User findById(Long id) {
+        return userRepository.findById(id);
     }
 }
