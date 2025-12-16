@@ -18,4 +18,9 @@ public class CourierRepositoryImpl implements CourierRepository {
     public Courier save(Courier courier) {
         return jpaCourierRepository.save(courier);
     }
+
+    @Override
+    public Courier findById(Long id) {
+        return jpaCourierRepository.findById(id).orElse(null);
+    }
 }

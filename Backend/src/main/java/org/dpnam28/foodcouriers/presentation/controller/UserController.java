@@ -45,6 +45,13 @@ public class UserController {
     public ApiResponse<UserResponse> findUserById(@PathVariable Long id) {
         User user = userUseCase.findById(id);
         UserResponse userResponse = userMapper.toUserResponse(user);
+        if ("ROLE_RESTAURANT".equals(user.getRole()) && user.getRestaurant() != null) {
+            userResponse.setDescription(user.getRestaurant().getDescription());
+            userResponse.setBannerImage(user.getRestaurant().getBannerImage());
+            userResponse.setDeliveryFee(user.getRestaurant().getDeliveryFee());
+        } else if ("ROLE_COURIER".equals(user.getRole()) && user.getCourier() != null) {
+            userResponse.setIsAvailable(user.getCourier().getIsAvailable());
+        }
         return ApiResponse.apiResponseSuccess("Get account succeeded", userResponse);
     }
 }

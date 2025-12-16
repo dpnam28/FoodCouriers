@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AuthLoginResponse {
+    private Long id;
     private String email;
     private String fullName;
     private String phoneNumber;

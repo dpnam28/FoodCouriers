@@ -12,6 +12,8 @@ public enum ErrorCode {
     EMAIL_NOT_VALID("Email không hợp lệ", 400),
     ARGUMENT_IS_REQUIRED("{arg} là bắt buộc", 400),
     RESTAURANT_NOT_FOUND("Nhà hàng không tồn tại", 404),
+    CUSTOMER_NOT_FOUND("Khách hàng không tồn tại", 404),
+    COURIER_NOT_FOUND("Nhân viên giao hàng không tồn tại", 404),
     ;
     private final String message;
     private final int code;

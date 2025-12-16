@@ -18,4 +18,9 @@ public class CustomerRepositoryImpl implements CustomerRepository {
     public Customer save(Customer customer) {
         return jpaCustomerRepository.save(customer);
     }
+
+    @Override
+    public Customer findById(Long id) {
+        return jpaCustomerRepository.findById(id).orElse(null);
+    }
 }
