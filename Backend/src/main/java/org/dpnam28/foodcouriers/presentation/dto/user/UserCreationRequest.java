@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.dpnam28.foodcouriers.domain.entity.Location;
 
 @Data
 @Builder
@@ -15,19 +14,19 @@ import org.dpnam28.foodcouriers.domain.entity.Location;
 @NoArgsConstructor
 public class UserCreationRequest {
 
-    @NotBlank(message = "Email is required")
-    @Email(message = "Email is not valid")
+    @NotBlank(message = "Email là bắt buộc")
+    @Email(message = "Email không hợp lệ")
     private String email;
-    @NotBlank(message = "Password is required")
+    @NotBlank(message = "Mật khẩu là bắt buộc")
     private String password;
-    @NotBlank(message = "Full name is required")
+    @NotBlank(message = "Tên là bắt buộc")
     private String fullName;
-    @NotBlank(message = "Phone number is required")
+    @NotBlank(message = "Số điện thoại là bắt buộc")
     private String phoneNumber;
-    @NotBlank(message = "Address is required")
+    @NotBlank(message = "Địa chỉ là bắt buộc")
     private String address;
-    @NotBlank(message = "Role is required")
+    @NotBlank(message = "Vai trò là bắt buộc")
     private String role;
-    @NotNull(message = "Location is required")
+    @NotNull(message = "Vị trí là bắt buộc")
     private Long locationId;
 }

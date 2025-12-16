@@ -12,6 +12,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class LocationUpdateRequest {
 
-    @NotBlank(message = "City is required")
+    @NotBlank(message = "Thành phố là bắt buộc")
     private String city;
 }

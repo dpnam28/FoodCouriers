@@ -20,8 +20,6 @@ import org.dpnam28.foodcouriers.R;
 import org.dpnam28.foodcouriers.ui.main.MainActivity;
 import org.dpnam28.foodcouriers.utils.ToastUtils;
 
-import java.util.regex.Pattern;
-
 public class LoginActivity extends AppCompatActivity implements LoginContract.View {
 
     private static final String TAG = "LoginActivity";

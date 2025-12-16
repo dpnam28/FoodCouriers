@@ -12,17 +12,17 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserUpdateRequest {
 
-    @NotBlank(message = "Password is required")
+    @NotBlank(message = "Mật khẩu là bắt buộc")
     private String password;
-    @NotBlank(message = "Full name is required")
+    @NotBlank(message = "Tên là bắt buộc")
     private String fullName;
-    @NotBlank(message = "Phone number is required")
+    @NotBlank(message = "Số điện thoại là bắt buộc")
     private String phoneNumber;
-    @NotBlank(message = "Address is required")
+    @NotBlank(message = "Địa chỉ là bắt buộc")
     private String address;
-    @NotBlank(message = "Role is required")
+    @NotBlank(message = "Vai trò là bắt buộc")
     private String role;
-    @NotNull(message = "Location is required")
+    @NotNull(message = "Vị trí là bắt buộc")
     private Long locationId;
     private String description;
     private String bannerImage;

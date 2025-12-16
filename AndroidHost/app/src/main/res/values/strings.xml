@@ -36,4 +36,5 @@
     <string name="hanoi">Hà Nội</string>
     <string name="hochiminh">Hồ Chí Minh</string>
     <string name="name">Tên</string>
+    <string name="contact_info">Thông tin liên hệ</string>
 </resources>
