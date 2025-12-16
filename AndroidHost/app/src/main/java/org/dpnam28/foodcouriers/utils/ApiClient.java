@@ -53,8 +53,35 @@ public class ApiClient {
             Response.Listener<JSONObject> listener,
             Response.ErrorListener errorListener
     ) {
-        JsonObjectRequest request = new JsonObjectRequest(
-                Request.Method.POST,
+        addToRequestQueue(buildJsonRequest(Request.Method.POST, endpoint, body, listener, errorListener));
+    }
+
+    public void getJson(
+            String endpoint,
+            Response.Listener<JSONObject> listener,
+            Response.ErrorListener errorListener
+    ) {
+        addToRequestQueue(buildJsonRequest(Request.Method.GET, endpoint, null, listener, errorListener));
+    }
+
+    public void putJson(
+            String endpoint,
+            JSONObject body,
+            Response.Listener<JSONObject> listener,
+            Response.ErrorListener errorListener
+    ) {
+        addToRequestQueue(buildJsonRequest(Request.Method.PUT, endpoint, body, listener, errorListener));
+    }
+
+    private JsonObjectRequest buildJsonRequest(
+            int method,
+            String endpoint,
+            JSONObject body,
+            Response.Listener<JSONObject> listener,
+            Response.ErrorListener errorListener
+    ) {
+        return new JsonObjectRequest(
+                method,
                 BASE_URL + endpoint,
                 body,
                 listener,
@@ -67,7 +94,5 @@ public class ApiClient {
                 return headers;
             }
         };
-
-        addToRequestQueue(request);
     }
 }

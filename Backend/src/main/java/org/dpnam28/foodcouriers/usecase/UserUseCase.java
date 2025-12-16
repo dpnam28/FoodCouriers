@@ -64,9 +64,8 @@ public class UserUseCase {
                 .build());
     }
 
-    public User updateUser(Long id, User user, Restaurant restaurant, Long locationId) {
+    public User updateUser(Long id, User user, Restaurant restaurant) {
         User userUpdate = userRepository.findById(id);
-        userUpdate.setLocation(locationRepository.findById(locationId));
         userUpdate.setPassword(user.getPassword());
         userUpdate.setFullName(user.getFullName());
         userUpdate.setPhoneNumber(user.getPhoneNumber());
@@ -76,6 +75,7 @@ public class UserUseCase {
             restaurantUpdate.setDescription(restaurant.getDescription());
             restaurantUpdate.setBannerImage(restaurant.getBannerImage());
             restaurantUpdate.setDeliveryFee(restaurant.getDeliveryFee());
+            restaurantRepository.save(restaurantUpdate);
         }
         return userRepository.save(userUpdate);
     }

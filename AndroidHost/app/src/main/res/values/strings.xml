@@ -37,4 +37,12 @@
     <string name="hochiminh">Hồ Chí Minh</string>
     <string name="name">Tên</string>
     <string name="contact_info">Thông tin liên hệ</string>
+    <string name="edit_profile">Chỉnh sửa thông tin</string>
+    <string name="location_label">Khu vực</string>
+    <string name="new_password">Mật khẩu mới</string>
+    <string name="description_label">Mô tả nhà hàng</string>
+    <string name="banner_image">Ảnh banner</string>
+    <string name="delivery_fee">Phí giao hàng</string>
+    <string name="save_changes">Lưu thay đổi</string>
+    <string name="cancel">Hủy</string>
 </resources>

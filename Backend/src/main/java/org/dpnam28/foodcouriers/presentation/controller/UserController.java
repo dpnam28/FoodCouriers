@@ -35,9 +35,8 @@ public class UserController {
     public ApiResponse<UserResponse> update(@PathVariable Long id, @RequestBody UserUpdateRequest request) {
         User updateRequest = userMapper.toUser(request);
         Restaurant updateRestaurant = restaurantMapper.toRestaurant(request);
-        Long locationId = request.getLocationId();
-        User userCreation = userUseCase.updateUser(id, updateRequest, updateRestaurant, locationId);
-        UserResponse userResponse = userMapper.toUserResponse(userCreation);
+        User userUpdate = userUseCase.updateUser(id, updateRequest, updateRestaurant);
+        UserResponse userResponse = userMapper.toUserResponse(userUpdate);
         return ApiResponse.apiResponseSuccess("Update account succeeded", userResponse);
     }
 

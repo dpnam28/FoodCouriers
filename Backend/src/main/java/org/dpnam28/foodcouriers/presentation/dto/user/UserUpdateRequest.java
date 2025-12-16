@@ -1,6 +1,5 @@
 package org.dpnam28.foodcouriers.presentation.dto.user;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,10 +19,6 @@ public class UserUpdateRequest {
     private String phoneNumber;
     @NotBlank(message = "Địa chỉ là bắt buộc")
     private String address;
-    @NotBlank(message = "Vai trò là bắt buộc")
-    private String role;
-    @NotNull(message = "Vị trí là bắt buộc")
-    private Long locationId;
     private String description;
     private String bannerImage;
     private Double deliveryFee;

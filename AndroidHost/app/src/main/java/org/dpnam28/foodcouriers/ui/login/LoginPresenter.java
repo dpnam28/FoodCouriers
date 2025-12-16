@@ -11,7 +11,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 
 public class LoginPresenter implements LoginContract.Presenter {
 
@@ -129,20 +128,30 @@ public class LoginPresenter implements LoginContract.Presenter {
         SharedPreferences userInfoPrefs = context.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = userInfoPrefs.edit();
 
+        String id = json.optString("id", "");
         String email = json.optString("email", "");
         String fullName = json.optString("fullName", "");
         String phoneNumber = json.optString("phoneNumber", "");
         String role = json.optString("role", "");
         String address = json.optString("address", "");
-        String location = json.optJSONObject("location") != null ?
-                Objects.requireNonNull(json.optJSONObject("location")).optString("city", "") : "";
+        JSONObject locationObj = json.optJSONObject("location");
+        String location = "";
+        long locationId = 0L;
+        if (locationObj != null) {
+            location = locationObj.optString("city", "");
+            if (locationObj.has("id")) {
+                locationId = locationObj.optLong("id");
+            }
+        }
 
+        editor.putString("id", id);
         editor.putString("email", email);
         editor.putString("fullName", fullName);
         editor.putString("phoneNumber", phoneNumber);
         editor.putString("role", role);
         editor.putString("address", address);
         editor.putString("location", location);
+        editor.putLong("locationId", locationId);
         editor.putBoolean("isLoggedIn", true);
         editor.apply();
     }

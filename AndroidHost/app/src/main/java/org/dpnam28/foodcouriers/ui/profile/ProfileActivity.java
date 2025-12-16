@@ -1,5 +1,6 @@
 package org.dpnam28.foodcouriers.ui.profile;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -16,8 +17,8 @@ import org.dpnam28.foodcouriers.ui.login.LoginActivity;
 public class ProfileActivity extends AppCompatActivity {
 
     ImageButton btnBack;
-    Button btnLogout;
-    TextView tvNameValue, tvAddressValue, tvRoleValue, tvPhoneValue, tvEmailValue;
+    Button btnLogout, btnEdit;
+    TextView tvNameValue, tvAddressValue, tvRoleValue, tvPhoneValue, tvEmailValue, titleName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,9 @@ public class ProfileActivity extends AppCompatActivity {
 
         btnBack.setOnClickListener(v -> finish());
 
+        btnEdit.setOnClickListener(v ->
+                startActivity(new Intent(this, ProfileEditActivity.class)));
+
         btnLogout.setOnClickListener(v -> {
             var sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
             sharedPreferences.edit().clear().apply();
@@ -39,16 +43,25 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        initialProfile();
+    }
+
     private void assignView(){
         btnBack = findViewById(R.id.btnBack);
         btnLogout = findViewById(R.id.btnLogout);
+        btnEdit = findViewById(R.id.btnEdit);
         tvNameValue = findViewById(R.id.tvNameValue);
         tvAddressValue = findViewById(R.id.tvAddressValue);
         tvRoleValue = findViewById(R.id.tvRoleValue);
         tvPhoneValue = findViewById(R.id.tvPhoneValue);
         tvEmailValue = findViewById(R.id.tvEmailValue);
+        titleName = findViewById(R.id.titleName);
     }
 
+    @SuppressLint("SetTextI18n")
     private void initialProfile(){
         SharedPreferences sharedPreferences = getSharedPreferences("userInfo", MODE_PRIVATE);
         String fullName = sharedPreferences.getString("fullName", "");
@@ -63,6 +76,7 @@ public class ProfileActivity extends AppCompatActivity {
             displayRole = "Khách hàng";
         } else if ("ROLE_RESTAURANT".equals(role)) {
             displayRole = "Nhà hàng";
+            titleName.setText("Tên nhà hàng");
         } else if ("ROLE_COURIER".equals(role)) {
             displayRole = "Nhân viên giao hàng";
         } else {

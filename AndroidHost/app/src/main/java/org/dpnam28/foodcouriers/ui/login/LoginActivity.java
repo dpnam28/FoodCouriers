@@ -51,11 +51,11 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         assignView();
         presenter = new LoginPresenter(this, this);
 
-        TabLayout.Tab tab = tabLayout.getTabAt(0);
+        TabLayout.Tab tab = tabLayout.getTabAt(1);
         if (tab != null) {
             tab.select();
         }
-        showTab(0);
+        showTab(1);
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -120,7 +120,9 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
                 role,
                 Long.parseLong(city)
         );
+        btnRegister.setEnabled(false);
         presenter.register(form);
+        btnRegister.setEnabled(true);
     }
 
     private void handleLogin(){
@@ -132,8 +134,15 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
             return;
         }
 
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            ToastUtils.showTopToast(this, "Email không hợp lệ", ToastUtils.TYPE_ERROR);
+            return;
+        }
+
         LoginContract.UserLoginForm form = new LoginContract.UserLoginForm(email, password);
+        btnLogin.setEnabled(false);
         presenter.login(form);
+        btnLogin.setEnabled(true);
     }
     private String getTrimmed(EditText editText) {
         return editText.getText().toString().trim();
