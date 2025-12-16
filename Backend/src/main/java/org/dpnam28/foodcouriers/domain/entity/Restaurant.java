@@ -1,7 +1,6 @@
 package org.dpnam28.foodcouriers.domain.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.util.List;
@@ -34,4 +33,7 @@ public class Restaurant {
 
     @OneToMany(mappedBy = "restaurant")
     private List<Order> orders;
+    
+    @OneToMany(mappedBy = "restaurant")
+    private List<Food> foods;
 }
