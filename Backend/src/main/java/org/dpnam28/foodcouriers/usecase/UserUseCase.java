@@ -14,6 +14,7 @@ import org.dpnam28.foodcouriers.domain.repository.LocationRepository;
 import org.dpnam28.foodcouriers.domain.repository.RestaurantRepository;
 import org.dpnam28.foodcouriers.domain.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,6 +26,7 @@ public class UserUseCase {
     private final CustomerRepository customerRepository;
     private final CourierRepository courierRepository;
     private final RestaurantRepository restaurantRepository;
+    private final CloudinaryUseCase cloudinaryUseCase;
 
     public User createUser(User user, Long locationId) {
         if (userRepository.findByEmail(user.getEmail()) != null) {
@@ -64,7 +66,7 @@ public class UserUseCase {
                 .build());
     }
 
-    public User updateUser(Long id, User user, Restaurant restaurant) {
+    public User updateUser(Long id, User user, Restaurant restaurant, MultipartFile bannerImage) {
         User userUpdate = userRepository.findById(id);
         userUpdate.setPassword(user.getPassword());
         userUpdate.setFullName(user.getFullName());
@@ -73,7 +75,10 @@ public class UserUseCase {
         Restaurant restaurantUpdate = restaurantRepository.findById(id);
         if(restaurantUpdate != null && Objects.equals(userUpdate.getRole(), "ROLE_RESTAURANT")){
             restaurantUpdate.setDescription(restaurant.getDescription());
-            restaurantUpdate.setBannerImage(restaurant.getBannerImage());
+            String bannerImageUrl = cloudinaryUseCase.uploadImage(bannerImage);
+            if (bannerImageUrl != null) {
+                restaurantUpdate.setBannerImage(bannerImageUrl);
+            }
             restaurantUpdate.setDeliveryFee(restaurant.getDeliveryFee());
             restaurantRepository.save(restaurantUpdate);
         }

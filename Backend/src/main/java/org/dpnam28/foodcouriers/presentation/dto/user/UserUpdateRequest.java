@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserUpdateRequest {
 
-    @NotBlank(message = "Mật khẩu là bắt buộc")
     private String password;
     @NotBlank(message = "Tên là bắt buộc")
     private String fullName;
@@ -20,6 +19,5 @@ public class UserUpdateRequest {
     @NotBlank(message = "Địa chỉ là bắt buộc")
     private String address;
     private String description;
-    private String bannerImage;
     private Double deliveryFee;
 }

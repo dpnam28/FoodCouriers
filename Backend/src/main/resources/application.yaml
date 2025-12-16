@@ -2,6 +2,8 @@ server:
   port: 8080
   servlet:
     context-path: /api
+cloudinary:
+  url: cloudinary://696543148327512:-x4DSw2iwUPyDXd2Eo9bQDJHs4Q@dkuoubq6x
 
 spring:
   datasource:

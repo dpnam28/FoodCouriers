@@ -12,7 +12,9 @@ import org.dpnam28.foodcouriers.presentation.dto.user.UserResponse;
 import org.dpnam28.foodcouriers.presentation.mapper.RestaurantMapper;
 import org.dpnam28.foodcouriers.presentation.mapper.UserMapper;
 import org.dpnam28.foodcouriers.usecase.UserUseCase;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Slf4j
 @RestController
@@ -31,11 +33,13 @@ public class UserController {
         return ApiResponse.apiResponseSuccess("Create account succeeded", userResponse);
     }
 
-    @PutMapping("/{id}")
-    public ApiResponse<UserResponse> update(@PathVariable Long id, @RequestBody UserUpdateRequest request) {
+    @PutMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ApiResponse<UserResponse> update(@PathVariable Long id,
+                                            @ModelAttribute @Valid UserUpdateRequest request,
+                                            @RequestPart(value = "bannerImage", required = false) MultipartFile bannerImage) {
         User updateRequest = userMapper.toUser(request);
         Restaurant updateRestaurant = restaurantMapper.toRestaurant(request);
-        User userUpdate = userUseCase.updateUser(id, updateRequest, updateRestaurant);
+        User userUpdate = userUseCase.updateUser(id, updateRequest, updateRestaurant, bannerImage);
         UserResponse userResponse = userMapper.toUserResponse(userUpdate);
         return ApiResponse.apiResponseSuccess("Update account succeeded", userResponse);
     }
