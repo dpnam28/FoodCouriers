@@ -3,8 +3,6 @@ package org.dpnam28.foodcouriers.domain.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
-
 @Entity
 @Getter
 @Setter
@@ -23,6 +21,9 @@ public class Food {
 
     @ManyToOne
     private Category category;
+
+    @ManyToOne
+    private Restaurant restaurant;
 
     @Column(nullable = false)
     private Double price;
