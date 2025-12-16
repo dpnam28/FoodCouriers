@@ -9,10 +9,13 @@ public class LoginContract {
         void showLoading(boolean isLoading);
         void onRegisterSuccess();
         void onRegisterError(String message);
+        void onLoginSuccess();
+        void onLoginError(String message);
     }
 
     public interface Presenter {
         void register(UserForm form);
+        void login(UserLoginForm form);
         void detach();
     }
 
@@ -70,5 +73,24 @@ public class LoginContract {
         public long getLocationId() {
             return locationId;
         }
+    }
+
+    public static class UserLoginForm {
+        private final String email;
+        private final String password;
+
+        public UserLoginForm(String email, String password) {
+            this.email = email;
+            this.password = password;
+        }
+
+        public String getEmail() {
+            return email;
+        }
+
+        public String getPassword() {
+            return password;
+        }
+
     }
 }

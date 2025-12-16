@@ -4,14 +4,14 @@ import lombok.Getter;
 
 @Getter
 public enum ErrorCode {
-    INTERNAL_SERVER_ERROR("Internal server error", 500),
-    USER_NOT_FOUND("User not found", 404),
-    USER_ALREADY_EXISTS("User already exists", 409),
-    LOCATION_NOT_FOUND("Location not found", 404),
-    INVALID_PASSWORD("Invalid password", 400),
-    EMAIL_NOT_VALID("Email is not valid", 400),
-    ARGUMENT_IS_REQUIRED("{arg} is required", 400),
-    RESTAURANT_NOT_FOUND("Restaurant not found", 404),
+    INTERNAL_SERVER_ERROR("Lỗi máy chủ nội bộ", 500),
+    USER_NOT_FOUND("Người dùng không tồn tại", 404),
+    USER_ALREADY_EXISTS("Người dùng đã tồn tại", 409),
+    LOCATION_NOT_FOUND("Vị trí không tồn tại", 404),
+    INVALID_PASSWORD("Mật khẩu không hợp lệ", 400),
+    EMAIL_NOT_VALID("Email không hợp lệ", 400),
+    ARGUMENT_IS_REQUIRED("{arg} là bắt buộc", 400),
+    RESTAURANT_NOT_FOUND("Nhà hàng không tồn tại", 404),
     ;
     private final String message;
     private final int code;

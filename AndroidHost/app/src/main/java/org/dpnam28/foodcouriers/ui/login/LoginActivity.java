@@ -1,7 +1,6 @@
 package org.dpnam28.foodcouriers.ui.login;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -74,28 +73,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
         btnRegister.setOnClickListener(v -> handleRegister());
 
-        btnLogin.setOnClickListener(v -> {
-            String email = edtEmailLogin.getText().toString();
-            String password = edtPasswordLogin.getText().toString();
-
-            if (email.isEmpty() || password.isEmpty()) {
-                ToastUtils.showTopToast(this, "Vui lòng nhập đầy đủ thông tin", ToastUtils.TYPE_ERROR);
-            } else {
-                if (email.equals("admin@gmail.com") && password.equals("admin")) {
-                    ToastUtils.showTopToast(this, "Đăng nhập thành công", ToastUtils.TYPE_SUCCESS);
-
-                    SharedPreferences.Editor editor = getSharedPreferences("MyPrefs", MODE_PRIVATE).edit();
-                    editor.putBoolean("isLoggedIn", true);
-                    editor.apply();
-
-                    Intent intent = new Intent(this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    ToastUtils.showTopToast(this, "Đăng nhập thất bại", ToastUtils.TYPE_ERROR);
-                }
-            }
-        });
+        btnLogin.setOnClickListener(v -> handleLogin());
     }
 
     private void handleRegister() {
@@ -139,6 +117,18 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         presenter.register(form);
     }
 
+    private void handleLogin(){
+        String email = getTrimmed(edtEmailLogin);
+        String password = getTrimmed(edtPasswordLogin);
+
+        if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)){
+            ToastUtils.showTopToast(this, "Vui lòng nhập đầy đủ thông tin", ToastUtils.TYPE_ERROR);
+            return;
+        }
+
+        LoginContract.UserLoginForm form = new LoginContract.UserLoginForm(email, password);
+        presenter.login(form);
+    }
     private String getTrimmed(EditText editText) {
         return editText.getText().toString().trim();
     }
@@ -221,6 +211,21 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
     public void onRegisterError(String message) {
         String displayMessage = TextUtils.isEmpty(message) ? "Đăng ký thất bại" : message;
         Log.e(TAG, "Registration error: " + displayMessage);
+        ToastUtils.showTopToast(this, displayMessage, ToastUtils.TYPE_ERROR);
+    }
+
+    @Override
+    public void onLoginSuccess() {
+        ToastUtils.showTopToast(this, "Đăng nhập thành công", ToastUtils.TYPE_SUCCESS);
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
+    public void onLoginError(String message) {
+        String displayMessage = TextUtils.isEmpty(message) ? "Đăng nhập thất bại" : message;
+        Log.e(TAG, "Login error: " + displayMessage);
         ToastUtils.showTopToast(this, displayMessage, ToastUtils.TYPE_ERROR);
     }
 
