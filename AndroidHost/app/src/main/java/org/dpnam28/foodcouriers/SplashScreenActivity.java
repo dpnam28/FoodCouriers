@@ -23,7 +23,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_splash_screen);
 
-        SharedPreferences sharePreference = getSharedPreferences("userPrefs", MODE_PRIVATE);
+        SharedPreferences sharePreference = getSharedPreferences("userInfo", MODE_PRIVATE);
         boolean isLoggedIn = sharePreference.getBoolean("isLoggedIn", false);
         if (isLoggedIn) {
             new Handler().postDelayed(() -> {

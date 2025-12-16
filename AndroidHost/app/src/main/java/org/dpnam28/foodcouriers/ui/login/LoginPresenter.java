@@ -16,7 +16,6 @@ import java.util.Objects;
 public class LoginPresenter implements LoginContract.Presenter {
 
     private static final String TAG = "LoginPresenter";
-    private static final String PREF_USER_INFO = "userInfo";
 
     private final Context context;
     private final ApiClient apiClient;
@@ -127,9 +126,7 @@ public class LoginPresenter implements LoginContract.Presenter {
     }
 
     private void saveLoginData(JSONObject json) {
-        SharedPreferences userInfoPrefs = context.getSharedPreferences(PREF_USER_INFO, Context.MODE_PRIVATE);
-        SharedPreferences userPrefs = context.getSharedPreferences("userPrefs", Context.MODE_PRIVATE);
-        SharedPreferences.Editor prefsEditor = userPrefs.edit();
+        SharedPreferences userInfoPrefs = context.getSharedPreferences("userInfo", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = userInfoPrefs.edit();
 
         String email = json.optString("email", "");
@@ -146,10 +143,8 @@ public class LoginPresenter implements LoginContract.Presenter {
         editor.putString("role", role);
         editor.putString("address", address);
         editor.putString("location", location);
+        editor.putBoolean("isLoggedIn", true);
         editor.apply();
-
-        prefsEditor.putBoolean("isLoggedIn", true);
-        prefsEditor.apply();
     }
 
     @Override

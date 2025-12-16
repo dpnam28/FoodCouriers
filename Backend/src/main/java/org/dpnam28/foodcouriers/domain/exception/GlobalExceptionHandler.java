@@ -38,8 +38,8 @@ public class GlobalExceptionHandler {
             errorCode = ErrorCode.fromMessage(defaultMessage);
             responseMessage = defaultMessage;
         } catch (IllegalArgumentException ex) {
-            if (defaultMessage != null && defaultMessage.toLowerCase().endsWith("is required")) {
-                String arg = defaultMessage.substring(0, defaultMessage.toLowerCase().lastIndexOf("is required")).trim();
+            if (defaultMessage != null && defaultMessage.toLowerCase().endsWith("là bắt buộc")) {
+                String arg = defaultMessage.substring(0, defaultMessage.toLowerCase().lastIndexOf("là bắt buộc")).trim();
                 errorCode = ErrorCode.ARGUMENT_IS_REQUIRED;
                 responseMessage = errorCode.formatMessage(arg);
             } else {

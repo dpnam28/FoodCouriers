@@ -19,7 +19,7 @@
     <string name="add_to_cart">Add to cart</string>
     <string name="pizza">Pizza</string>
     <string name="home">Home</string>
-    <string name="profile">Profile</string>
+    <string name="profile">Thông tin cá nhân</string>
     <string name="cart">Cart</string>
     <string name="banner">Banner</string>
     <string name="message">Message</string>
@@ -35,4 +35,5 @@
     <string name="city">Thành phố</string>
     <string name="hanoi">Hà Nội</string>
     <string name="hochiminh">Hồ Chí Minh</string>
+    <string name="name">Tên</string>
 </resources>
