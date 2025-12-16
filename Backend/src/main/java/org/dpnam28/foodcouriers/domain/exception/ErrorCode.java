@@ -14,6 +14,9 @@ public enum ErrorCode {
     RESTAURANT_NOT_FOUND("Nhà hàng không tồn tại", 404),
     CUSTOMER_NOT_FOUND("Khách hàng không tồn tại", 404),
     COURIER_NOT_FOUND("Nhân viên giao hàng không tồn tại", 404),
+    CATEGORY_NOT_FOUND("Danh mục không tồn tại", 404),
+    CATEGORY_ALREADY_EXISTS("Danh mục đã tồn tại", 409),
+    FOOD_NOT_FOUND("Món ăn không tồn tại", 404),
     ;
     private final String message;
     private final int code;
