@@ -41,7 +41,7 @@
     <string name="location_label">Khu vực</string>
     <string name="new_password">Mật khẩu mới</string>
     <string name="description_label">Mô tả nhà hàng</string>
-    <string name="banner_image">Ảnh banner</string>
+    <string name="select_banner_image">Chọn ảnh banner</string>
     <string name="delivery_fee">Phí giao hàng</string>
     <string name="save_changes">Lưu thay đổi</string>
     <string name="cancel">Hủy</string>

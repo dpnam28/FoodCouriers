@@ -2,17 +2,23 @@ package org.dpnam28.foodcouriers.ui.profile;
 
 import android.annotation.SuppressLint;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.bumptech.glide.Glide;
 
 import org.dpnam28.foodcouriers.R;
 import org.dpnam28.foodcouriers.utils.ToastUtils;
@@ -24,22 +30,37 @@ public class ProfileEditActivity extends AppCompatActivity implements ProfileCon
     private EditText edtAddress;
     private EditText edtPassword;
     private EditText edtDescription;
-    private EditText edtBannerImage;
+    private ImageView imgBanner;
     private EditText edtDeliveryFee;
     private View layoutRestaurantFields;
     private ProgressBar progressBar;
     private Button btnSave;
+    private Button btnChooseImage;
     private TextView titleName;
     private ProfileContract.Presenter presenter;
     private long userId;
-    private long locationId;
     private String currentRole;
+    private Uri selectedBannerUri;
+    private String currentBannerUrl;
+    private ActivityResultLauncher<String> imagePickerLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_profile_edit);
+
+        imagePickerLauncher = registerForActivityResult(
+                new ActivityResultContracts.GetContent(),
+                uri -> {
+                    if (uri != null) {
+                        selectedBannerUri = uri;
+                        currentBannerUrl = null;
+                        displayBanner(uri);
+                    }
+                }
+        );
+
         assignViews();
 
         presenter = new ProfilePresenter(this, this);
@@ -55,6 +76,7 @@ public class ProfileEditActivity extends AppCompatActivity implements ProfileCon
         ImageButton btnBack = findViewById(R.id.btnBackEdit);
         btnBack.setOnClickListener(v -> finish());
         btnSave.setOnClickListener(v -> submitForm());
+        btnChooseImage.setOnClickListener(v -> imagePickerLauncher.launch("image/*"));
     }
 
     private void assignViews() {
@@ -63,10 +85,11 @@ public class ProfileEditActivity extends AppCompatActivity implements ProfileCon
         edtAddress = findViewById(R.id.edtAddressEdit);
         edtPassword = findViewById(R.id.edtPasswordEdit);
         edtDescription = findViewById(R.id.edtDescriptionEdit);
-        edtBannerImage = findViewById(R.id.edtBannerEdit);
+        imgBanner = findViewById(R.id.imgBanner);
         edtDeliveryFee = findViewById(R.id.edtDeliveryFeeEdit);
         layoutRestaurantFields = findViewById(R.id.layoutRestaurantFields);
         btnSave = findViewById(R.id.btnSaveProfile);
+        btnChooseImage = findViewById(R.id.btnChooseImage);
         progressBar = findViewById(R.id.progressProfileEdit);
         titleName = findViewById(R.id.titleName);
     }
@@ -92,18 +115,20 @@ public class ProfileEditActivity extends AppCompatActivity implements ProfileCon
 
         if (TextUtils.isEmpty(fullName) ||
                 TextUtils.isEmpty(phone) ||
-                TextUtils.isEmpty(address) ||
-                TextUtils.isEmpty(password)) {
+                TextUtils.isEmpty(address)){
             ToastUtils.showTopToast(this, "Vui lòng nhập đầy đủ thông tin bắt buộc", ToastUtils.TYPE_ERROR);
             return;
         }
 
+        if(TextUtils.isEmpty(password)) {
+            ToastUtils.showTopToast(this, "Vui lòng nhập mật khẩu", ToastUtils.TYPE_ERROR);
+            return;
+        }
+
         String description = null;
-        String banner = null;
         Double deliveryFee = null;
         if ("ROLE_RESTAURANT".equals(currentRole)) {
             description = edtDescription.getText().toString().trim();
-            banner = edtBannerImage.getText().toString().trim();
             String feeText = edtDeliveryFee.getText().toString().trim();
             if (TextUtils.isEmpty(feeText)) {
                 ToastUtils.showTopToast(this, "Vui lòng nhập phí giao hàng", ToastUtils.TYPE_ERROR);
@@ -117,19 +142,20 @@ public class ProfileEditActivity extends AppCompatActivity implements ProfileCon
             }
         }
 
+        boolean isRestaurant = "ROLE_RESTAURANT".equals(currentRole);
+
         ProfileContract.UpdateForm form = new ProfileContract.UpdateForm(
                 userId,
                 password,
                 fullName,
                 phone,
                 address,
-                currentRole,
+                isRestaurant,
                 description,
-                banner,
                 deliveryFee
         );
 
-        presenter.updateUser(form);
+        presenter.updateUser(form, selectedBannerUri);
     }
 
     @Override
@@ -143,27 +169,23 @@ public class ProfileEditActivity extends AppCompatActivity implements ProfileCon
     @Override
     public void onUserLoaded(ProfileContract.UserDetail detail) {
         currentRole = detail.getRole();
-        if (detail.getLocationId() != 0L) {
-            locationId = detail.getLocationId();
-            storeLocationId(locationId);
-        } else {
-            locationId = readStoredLocationId();
-        }
         edtFullName.setText(detail.getFullName());
         edtPhone.setText(detail.getPhoneNumber());
         edtAddress.setText(detail.getAddress());
         edtPassword.setText("");
 
+        currentBannerUrl = detail.getBannerImage();
+        selectedBannerUri = null;
+        displayBanner(currentBannerUrl);
+
         if ("ROLE_RESTAURANT".equals(detail.getRole())) {
             titleName.setText("Tên nhà hàng");
             layoutRestaurantFields.setVisibility(View.VISIBLE);
             edtDescription.setText(detail.getDescription());
-            edtBannerImage.setText(detail.getBannerImage());
             edtDeliveryFee.setText(detail.getDeliveryFee() == null ? "" : String.valueOf(detail.getDeliveryFee()));
         } else {
             layoutRestaurantFields.setVisibility(View.GONE);
             edtDescription.setText("");
-            edtBannerImage.setText("");
             edtDeliveryFee.setText("");
         }
     }
@@ -173,6 +195,9 @@ public class ProfileEditActivity extends AppCompatActivity implements ProfileCon
         saveProfileToPrefs(detail);
         ToastUtils.showTopToast(this, "Cập nhật thông tin thành công", ToastUtils.TYPE_SUCCESS);
         setResult(RESULT_OK);
+        currentBannerUrl = detail.getBannerImage();
+        selectedBannerUri = null;
+        displayBanner(currentBannerUrl);
         finish();
     }
 
@@ -183,30 +208,20 @@ public class ProfileEditActivity extends AppCompatActivity implements ProfileCon
         editor.putString("phoneNumber", detail.getPhoneNumber());
         editor.putString("address", detail.getAddress());
         editor.putString("email", detail.getEmail());
-        if (detail.getLocationName() != null) {
-            editor.putString("location", detail.getLocationName());
-        }
-        long latestLocationId = locationId != 0L ? locationId : detail.getLocationId();
-        if (latestLocationId != 0L) {
-            editor.putLong("locationId", latestLocationId);
-        }
         editor.apply();
+    }
+
+    private void displayBanner(Object source) {
+        if (imgBanner == null) return;
+        Glide.with(this)
+                .load(source)
+                .centerCrop()
+                .into(imgBanner);
     }
 
     @Override
     public void onError(String message) {
         ToastUtils.showTopToast(this, message, ToastUtils.TYPE_ERROR);
-    }
-
-    private long readStoredLocationId() {
-        return getUserPrefs().getLong("locationId", 0L);
-    }
-
-    private void storeLocationId(long value) {
-        if (value == 0L) return;
-        SharedPreferences.Editor editor = getUserPrefs().edit();
-        editor.putLong("locationId", value);
-        editor.apply();
     }
 
     private SharedPreferences getUserPrefs() {

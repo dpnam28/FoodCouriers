@@ -1,5 +1,7 @@
 package org.dpnam28.foodcouriers.ui.profile;
 
+import android.net.Uri;
+
 public class ProfileContract {
 
     private ProfileContract() {
@@ -18,7 +20,7 @@ public class ProfileContract {
     public interface Presenter {
         void getUser(long userId);
 
-        void updateUser(UpdateForm form);
+        void updateUser(UpdateForm form, Uri bannerImageUri);
 
         void detach();
     }
@@ -111,20 +113,25 @@ public class ProfileContract {
         private final String fullName;
         private final String phoneNumber;
         private final String address;
-        private final String role;
+        private final boolean restaurant;
         private final String description;
-        private final String bannerImage;
         private final Double deliveryFee;
 
-        public UpdateForm(long userId, String password, String fullName, String phoneNumber, String address, String role, String description, String bannerImage, Double deliveryFee) {
+        public UpdateForm(long userId,
+                          String password,
+                          String fullName,
+                          String phoneNumber,
+                          String address,
+                          boolean restaurant,
+                          String description,
+                          Double deliveryFee) {
             this.userId = userId;
             this.password = password;
             this.fullName = fullName;
             this.phoneNumber = phoneNumber;
             this.address = address;
-            this.role = role;
+            this.restaurant = restaurant;
             this.description = description;
-            this.bannerImage = bannerImage;
             this.deliveryFee = deliveryFee;
         }
 
@@ -134,10 +141,6 @@ public class ProfileContract {
 
         public String getPassword() {
             return password;
-        }
-
-        public String getRole() {
-            return role;
         }
 
         public String getFullName() {
@@ -152,12 +155,12 @@ public class ProfileContract {
             return address;
         }
 
-        public String getDescription() {
-            return description;
+        public boolean isRestaurant() {
+            return restaurant;
         }
 
-        public String getBannerImage() {
-            return bannerImage;
+        public String getDescription() {
+            return description;
         }
 
         public Double getDeliveryFee() {
