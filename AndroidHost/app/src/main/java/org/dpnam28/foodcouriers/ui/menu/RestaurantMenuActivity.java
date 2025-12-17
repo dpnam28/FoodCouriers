@@ -1,5 +1,6 @@
 package org.dpnam28.foodcouriers.ui.menu;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
@@ -12,6 +13,8 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.dpnam28.foodcouriers.R;
@@ -32,6 +35,13 @@ public class RestaurantMenuActivity extends AppCompatActivity implements Restaur
     private final List<RestaurantMenuItem> allFoods = new ArrayList<>();
     private String role;
     private long userId;
+
+    private final ActivityResultLauncher<Intent> editorLauncher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == RESULT_OK) {
+                    presenter.getFoods(userId);
+                }
+            });
     private final static String TAG = "RestaurantMenuActivity";
 
     @Override
@@ -53,8 +63,13 @@ public class RestaurantMenuActivity extends AppCompatActivity implements Restaur
 
         presenter = new RestaurantPresenter(this, this);
         assignViews();
-        presenter.getFoods(userId, allFoods);
         setupList();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.getFoods(userId);
     }
 
     private void assignViews() {
@@ -64,11 +79,17 @@ public class RestaurantMenuActivity extends AppCompatActivity implements Restaur
         progressBar = findViewById(R.id.progressMenu);
         ImageButton btnBack = findViewById(R.id.btnBackMenu);
         btnBack.setOnClickListener(v -> finish());
+        ImageButton btnAddFood = findViewById(R.id.btnAddFood);
+        btnAddFood.setOnClickListener(v -> openFoodEditor(0L));
     }
 
     private void setupList() {
         adapter = new RestaurantMenuAdapter(this);
         listFoods.setAdapter(adapter);
+        listFoods.setOnItemClickListener((parent, view, position, id) -> {
+            RestaurantMenuItem item = adapter.getItem(position);
+            openFoodEditor(item.getId());
+        });
 
         edtSearch.addTextChangedListener(new TextWatcher() {
             @Override
@@ -126,14 +147,11 @@ public class RestaurantMenuActivity extends AppCompatActivity implements Restaur
 
     @Override
     public void onFoodsLoaded(List<RestaurantMenuItem> foods) {
-        adapter.setItems(foods);
-        if (foods.isEmpty()) {
-            emptyView.setVisibility(View.VISIBLE);
-            listFoods.setVisibility(View.GONE);
-        } else {
-            emptyView.setVisibility(View.GONE);
-            listFoods.setVisibility(View.VISIBLE);
+        allFoods.clear();
+        if (foods != null) {
+            allFoods.addAll(foods);
         }
+        updateList(allFoods);
     }
 
     @Override
@@ -148,5 +166,11 @@ public class RestaurantMenuActivity extends AppCompatActivity implements Restaur
         if (presenter != null) {
             presenter.detach();
         }
+    }
+
+    private void openFoodEditor(long foodId) {
+        Intent intent = new Intent(this, FoodEditorActivity.class);
+        intent.putExtra(FoodEditorActivity.EXTRA_FOOD_ID, foodId);
+        editorLauncher.launch(intent);
     }
 }

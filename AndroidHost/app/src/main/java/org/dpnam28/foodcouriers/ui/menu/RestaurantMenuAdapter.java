@@ -64,7 +64,7 @@ public class RestaurantMenuAdapter extends BaseAdapter {
 
         RestaurantMenuItem item = getItem(position);
         holder.tvName.setText(item.getName());
-        holder.tvDesc.setText(item.getDescription());
+        holder.tvDesc.setText(item.getDescription() != null ? item.getDescription() : "");
         holder.tvPrice.setText(formatPrice(item.getPrice()));
 
         Glide.with(context)

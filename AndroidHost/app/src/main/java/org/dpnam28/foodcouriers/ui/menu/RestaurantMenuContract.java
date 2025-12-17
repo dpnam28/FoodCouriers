@@ -12,7 +12,7 @@ public class RestaurantMenuContract {
         void onError(String message);
     }
     public interface Presenter {
-        void getFoods(long restaurantId, List<RestaurantMenuItem> foods);
+        void getFoods(long restaurantId);
         void detach();
     }
 }

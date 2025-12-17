@@ -46,6 +46,16 @@
     <string name="menu_search_hint">Tìm kiếm món ăn</string>
     <string name="menu_empty_state">Bạn chưa có món ăn nào. Hãy thêm món mới để hiển thị tại đây.</string>
     <string name="not_authorized_restaurant">Chỉ nhà hàng mới dùng được chức năng này</string>
+    <string name="add_food">Thêm món ăn</string>
+    <string name="edit_food">Chỉnh sửa món ăn</string>
+    <string name="food_name">Tên món ăn</string>
+    <string name="food_description">Mô tả món ăn</string>
+    <string name="food_price">Giá</string>
+    <string name="food_category">Danh mục</string>
+    <string name="food_active">Trang thái</string>
+    <string name="choose_image">Chọn hình ảnh</string>
+    <string name="save_food">Lưu món ăn</string>
+    <string name="image_required_message">Vui lòng chọn hình phù hợp</string>
     <string name="delivery_fee">Phí giao hàng</string>
     <string name="save_changes">Lưu thay đổi</string>
     <string name="cancel">Hủy</string>

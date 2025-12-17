@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 @Slf4j
 @RestController
@@ -24,12 +25,23 @@ public class FoodController {
 
     private final FoodUseCase foodUseCase;
     private final FoodMapper foodMapper;
+    private final AtomicBoolean createFoodInProgress = new AtomicBoolean(false);
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ApiResponse<FoodResponse> createFood(@Valid @ModelAttribute FoodCreateRequest request,
                                                 @RequestPart(value = "image", required = false) MultipartFile image) {
-        Food food = foodUseCase.createFood(request, image);
-        return ApiResponse.apiResponseSuccess("Create food succeeded", foodMapper.toFoodResponse(food));
+        if (!createFoodInProgress.compareAndSet(false, true)) {
+            return ApiResponse.<FoodResponse>builder()
+                    .code(429)
+                    .message("Yêu cầu tạo món ăn đang được xử lý, vui lòng thử lại")
+                    .build();
+        }
+        try {
+            Food food = foodUseCase.createFood(request, image);
+            return ApiResponse.apiResponseSuccess("Create food succeeded", foodMapper.toFoodResponse(food));
+        } finally {
+            createFoodInProgress.set(false);
+        }
     }
 
     @PutMapping(value = "/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)

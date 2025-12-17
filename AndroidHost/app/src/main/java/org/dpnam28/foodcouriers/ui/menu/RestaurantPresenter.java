@@ -6,6 +6,7 @@ import org.dpnam28.foodcouriers.utils.ApiClient;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RestaurantPresenter implements RestaurantMenuContract.Presenter{
@@ -22,12 +23,12 @@ public class RestaurantPresenter implements RestaurantMenuContract.Presenter{
 
 
     @Override
-    public void getFoods(long restaurantId, List<RestaurantMenuItem> foods) {
+    public void getFoods(long restaurantId) {
         view.showLoading(true);
         apiClient.getJson("restaurants/" + restaurantId + "/foods",
                 response -> {
                     view.showLoading(false);
-                    parseFoods(response.optJSONArray("data"), foods);
+                    parseFoods(response.optJSONArray("data"));
                 },
                 error -> {
                     view.showLoading(false);
@@ -35,8 +36,8 @@ public class RestaurantPresenter implements RestaurantMenuContract.Presenter{
                 });
     }
 
-    private void parseFoods(JSONArray data, List<RestaurantMenuItem> allFoods) {
-        allFoods.clear();
+    private void parseFoods(JSONArray data) {
+        List<RestaurantMenuItem> foods = new ArrayList<>();
         if (data != null) {
             for (int i = 0; i < data.length(); i++) {
                 JSONObject obj = data.optJSONObject(i);
@@ -49,10 +50,10 @@ public class RestaurantPresenter implements RestaurantMenuContract.Presenter{
                         obj.optDouble("price"),
                         obj.optString("image")
                 );
-                allFoods.add(item);
+                foods.add(item);
             }
         }
-        view.onFoodsLoaded(allFoods);
+        view.onFoodsLoaded(foods);
     }
 
     @Override

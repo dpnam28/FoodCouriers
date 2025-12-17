@@ -80,15 +80,35 @@ public class ApiClient {
             Response.Listener<JSONObject> listener,
             Response.ErrorListener errorListener
     ) {
-        MultipartRequest request = new MultipartRequest(
-                Request.Method.PUT,
+        addToRequestQueue(buildMultipartRequest(Request.Method.PUT, endpoint, params, fileParts, listener, errorListener));
+    }
+
+    public void postMultipart(
+            String endpoint,
+            Map<String, String> params,
+            Map<String, MultipartRequest.DataPart> fileParts,
+            Response.Listener<JSONObject> listener,
+            Response.ErrorListener errorListener
+    ) {
+        addToRequestQueue(buildMultipartRequest(Request.Method.POST, endpoint, params, fileParts, listener, errorListener));
+    }
+
+    private MultipartRequest buildMultipartRequest(
+            int method,
+            String endpoint,
+            Map<String, String> params,
+            Map<String, MultipartRequest.DataPart> fileParts,
+            Response.Listener<JSONObject> listener,
+            Response.ErrorListener errorListener
+    ) {
+        return new MultipartRequest(
+                method,
                 BASE_URL + endpoint,
                 params,
                 fileParts,
                 listener,
                 errorListener
         );
-        addToRequestQueue(request);
     }
 
     private JsonObjectRequest buildJsonRequest(
