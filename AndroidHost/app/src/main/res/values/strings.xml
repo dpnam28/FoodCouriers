@@ -42,6 +42,10 @@
     <string name="new_password">Mật khẩu mới</string>
     <string name="description_label">Mô tả nhà hàng</string>
     <string name="select_banner_image">Chọn ảnh banner</string>
+    <string name="restaurant_menu_title">Quản lý thực đơn</string>
+    <string name="menu_search_hint">Tìm kiếm món ăn</string>
+    <string name="menu_empty_state">Bạn chưa có món ăn nào. Hãy thêm món mới để hiển thị tại đây.</string>
+    <string name="not_authorized_restaurant">Chỉ nhà hàng mới dùng được chức năng này</string>
     <string name="delivery_fee">Phí giao hàng</string>
     <string name="save_changes">Lưu thay đổi</string>
     <string name="cancel">Hủy</string>

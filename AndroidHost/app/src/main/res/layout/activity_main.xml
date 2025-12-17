@@ -647,7 +647,6 @@
                     android:textColor="#000000" />
             </LinearLayout>
 
-            <!-- Cart -->
             <LinearLayout
                 android:id="@+id/navCart"
                 android:layout_width="0dp"
@@ -659,10 +658,41 @@
                 android:gravity="center">
 
                 <ImageView
-                    android:id="@+id/btnCart"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_cart"
+                    android:contentDescription="@string/cart" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/navHistory"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_history"
+                    android:contentDescription="@string/cart" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/navMenu"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="vertical"
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_menu_restaurant"
                     android:contentDescription="@string/cart" />
             </LinearLayout>
 

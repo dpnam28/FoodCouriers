@@ -19,6 +19,9 @@
             android:name=".ui.profile.ProfileActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.menu.RestaurantMenuActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.profile.ProfileEditActivity"
             android:exported="false" />
         <activity
