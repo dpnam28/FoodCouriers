@@ -17,6 +17,7 @@ public enum ErrorCode {
     CATEGORY_NOT_FOUND("Danh mục không tồn tại", 404),
     CATEGORY_ALREADY_EXISTS("Danh mục đã tồn tại", 409),
     FOOD_NOT_FOUND("Món ăn không tồn tại", 404),
+    CART_ITEM_NOT_FOUND("Sản phẩm trong giỏ hàng không tồn tại", 404),
     UPLOAD_FAILED("Tải ảnh thất bại", 500),
     ;
     private final String message;
