@@ -67,6 +67,17 @@ public class CartItemUseCase {
         return cartItemRepository.findByUserId(userId);
     }
 
+    public void deleteCartItemsByUserId(Long userId) {
+        if (userId == null) {
+            throw new AppException(ErrorCode.ARGUMENT_IS_REQUIRED, ErrorCode.ARGUMENT_IS_REQUIRED.formatMessage("ID người dùng"));
+        }
+        User user = userRepository.findById(userId);
+        if (user == null) {
+            throw new AppException(ErrorCode.USER_NOT_FOUND);
+        }
+        cartItemRepository.deleteByUserId(userId);
+    }
+
     private CartItem getCartItemOrThrow(Long id) {
         CartItem cartItem = cartItemRepository.findById(id);
         if (cartItem == null) {

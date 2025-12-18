@@ -14,6 +14,8 @@ public interface CartItemMapper {
     @Mapping(target = "userName", source = "user.fullName")
     @Mapping(target = "foodId", source = "food.id")
     @Mapping(target = "foodName", source = "food.name")
+    @Mapping(target = "restaurantId", source = "food.restaurant.id")
+    @Mapping(target = "restaurantName", source = "food.restaurant.user.fullName")
     CartItemResponse toResponse(CartItem cartItem);
 
     List<CartItemResponse> toResponses(List<CartItem> cartItems);

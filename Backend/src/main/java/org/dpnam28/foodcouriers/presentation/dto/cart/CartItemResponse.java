@@ -11,6 +11,8 @@ public class CartItemResponse {
     private String userName;
     private Long foodId;
     private String foodName;
+    private Long restaurantId;
+    private String restaurantName;
     private Integer quantity;
     private Double totalPrice;
 }

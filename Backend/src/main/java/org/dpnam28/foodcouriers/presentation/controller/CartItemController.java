@@ -45,4 +45,10 @@ public class CartItemController {
         List<CartItem> cartItems = cartItemUseCase.getCartItemsByUserId(id);
         return ApiResponse.apiResponseSuccess("Lấy giỏ hàng thành công", cartItemMapper.toResponses(cartItems));
     }
+
+    @DeleteMapping("/user/{id}")
+    public ApiResponse<Void> deleteCartItemsByUserId(@PathVariable("id") Long id) {
+        cartItemUseCase.deleteCartItemsByUserId(id);
+        return ApiResponse.apiResponseSuccess("Đã xóa toàn bộ giỏ hàng của người dùng", null);
+    }
 }

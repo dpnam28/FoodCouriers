@@ -12,6 +12,8 @@ interface JpaCartItemRepository extends JpaRepository<CartItem, Long> {
     List<CartItem> findByUser_Id(Long userId);
 
     List<CartItem> findByIdIn(List<Long> ids);
+
+    void deleteByUser_Id(Long userId);
 }
 
 @Repository
@@ -49,5 +51,13 @@ public class CartItemRepositoryImpl implements CartItemRepository {
             return List.of();
         }
         return jpaCartItemRepository.findByIdIn(ids);
+    }
+
+    @Override
+    public void deleteByUserId(Long userId) {
+        if (userId == null) {
+            return;
+        }
+        jpaCartItemRepository.deleteByUser_Id(userId);
     }
 }
