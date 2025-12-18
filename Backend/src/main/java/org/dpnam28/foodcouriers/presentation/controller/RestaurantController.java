@@ -7,6 +7,7 @@ import org.dpnam28.foodcouriers.domain.entity.Food;
 import org.dpnam28.foodcouriers.domain.entity.Restaurant;
 import org.dpnam28.foodcouriers.presentation.dto.food.FoodResponse;
 import org.dpnam28.foodcouriers.presentation.dto.restaurant.RestaurantSearchResponse;
+import org.dpnam28.foodcouriers.presentation.dto.restaurant.RestaurantWithFoodsResponse;
 import org.dpnam28.foodcouriers.presentation.mapper.FoodMapper;
 import org.dpnam28.foodcouriers.presentation.mapper.RestaurantMapper;
 import org.dpnam28.foodcouriers.usecase.RestaurantUseCase;
@@ -25,6 +26,15 @@ public class RestaurantController {
     private final RestaurantMapper restaurantMapper;
     private final FoodMapper foodMapper;
 
+    @GetMapping("/{id}")
+    public ApiResponse<RestaurantWithFoodsResponse> getRestaurantWithFoods(@PathVariable Long id) {
+        Restaurant restaurant = restaurantUseCase.getRestaurantById(id);
+        List<Food> foods = restaurantUseCase.getFoodsByRestaurant(id);
+        RestaurantWithFoodsResponse response = new RestaurantWithFoodsResponse();
+        response.setRestaurant(restaurantMapper.toRestaurantResponse(restaurant));
+        response.setFoods(foodMapper.toFoodResponses(foods));
+        return ApiResponse.apiResponseSuccess("Get restaurant succeeded", response);
+    }
     @GetMapping("/search")
     public ApiResponse<List<RestaurantSearchResponse>> searchRestaurants(
             @RequestParam(required = false) String name,

@@ -29,4 +29,12 @@ public class RestaurantUseCase {
         }
         return foodRepository.findByRestaurantId(restaurantId);
     }
+
+    public Restaurant getRestaurantById(Long id) {
+        Restaurant restaurant = restaurantRepository.findById(id);
+        if (restaurant == null) {
+            throw new AppException(ErrorCode.RESTAURANT_NOT_FOUND);
+        }
+        return restaurant;
+    }
 }
