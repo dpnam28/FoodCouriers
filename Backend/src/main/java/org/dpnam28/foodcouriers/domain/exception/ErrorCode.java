@@ -18,7 +18,11 @@ public enum ErrorCode {
     CATEGORY_ALREADY_EXISTS("Danh mục đã tồn tại", 409),
     FOOD_NOT_FOUND("Món ăn không tồn tại", 404),
     CART_ITEM_NOT_FOUND("Sản phẩm trong giỏ hàng không tồn tại", 404),
+    ORDER_NOT_FOUND("Đơn hàng không tồn tại", 404),
+    UNAUTHORIZED_ACTION("Không có quyền thực hiện thao tác này", 403),
     UPLOAD_FAILED("Tải ảnh thất bại", 500),
+    USER_NOT_OWN_CART_ITEM("Người dùng không sở hữu sản phẩm trong giỏ hàng", 403),
+    RESTAURANT_NOT_OWN_ITEM("Nhà hàng không sở hữu sản phẩm", 403)
     ;
     private final String message;
     private final int code;

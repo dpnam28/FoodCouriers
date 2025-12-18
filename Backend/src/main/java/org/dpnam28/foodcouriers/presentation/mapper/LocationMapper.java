@@ -4,6 +4,7 @@ import org.dpnam28.foodcouriers.domain.entity.Location;
 import org.dpnam28.foodcouriers.presentation.dto.location.LocationResponse;
 import org.dpnam28.foodcouriers.presentation.dto.location.LocationUpdateRequest;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 import java.util.List;
 
@@ -11,5 +12,7 @@ import java.util.List;
 public interface LocationMapper {
     List<LocationResponse> toListLocationResponse(List<Location> location);
     LocationResponse toLocationResponse(Location location);
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "users", ignore = true)
     Location toLocation(LocationUpdateRequest location);
 }

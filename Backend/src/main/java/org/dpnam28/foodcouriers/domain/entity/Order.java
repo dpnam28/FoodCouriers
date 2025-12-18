@@ -17,6 +17,9 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
+    private Double totalPrice; 
+
     @ManyToOne
     private Courier courier;
 
@@ -26,7 +29,7 @@ public class Order {
     @ManyToOne
     private Restaurant restaurant;
 
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<OrderDetail> orderDetails;
 
     @Enumerated(EnumType.STRING)

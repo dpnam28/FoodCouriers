@@ -4,9 +4,13 @@ import lombok.RequiredArgsConstructor;
 import org.dpnam28.foodcouriers.domain.entity.Courier;
 import org.dpnam28.foodcouriers.domain.repository.CourierRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 interface JpaCourierRepository extends JpaRepository<Courier, Long> {
+    @Query("SELECT c FROM Courier c WHERE (:location IS NULL OR :location = '' OR LOWER(c.user.location.city) LIKE LOWER(CONCAT('%', :location, '%')))")
+    java.util.List<Courier> searchByLocation(@Param("location") String location);
 }
 
 @Repository
@@ -23,4 +27,10 @@ public class CourierRepositoryImpl implements CourierRepository {
     public Courier findById(Long id) {
         return jpaCourierRepository.findById(id).orElse(null);
     }
+
+    @Override
+    public java.util.List<Courier> findByLocation(String location) {
+        return jpaCourierRepository.searchByLocation(location);
+    }
+
 }
