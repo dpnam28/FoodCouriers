@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="220dp">
+
+        <ImageView
+            android:id="@+id/imgRestaurantBanner"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:contentDescription="@string/image"
+            android:scaleType="centerCrop"/>
+
+        <ImageButton
+            android:id="@+id/btnBackRestaurant"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_gravity="start|top"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bg_button_secondary"
+            android:contentDescription="@string/back"
+            android:src="@drawable/ic_back"
+            app:tint="@color/black" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvRestaurantName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="22sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvRestaurantDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/gray"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvRestaurantAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvRestaurantPhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvRestaurantLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvRestaurantDeliveryFee"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tvFoodsSectionTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/restaurant_foods_title"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvRestaurantNoFoods"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/restaurant_foods_empty"
+            android:textColor="@color/gray"
+            android:textSize="14sp"
+            android:visibility="gone" />
+    </LinearLayout>
+
+</LinearLayout>
