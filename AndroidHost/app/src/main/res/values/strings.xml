@@ -59,4 +59,21 @@
     <string name="delivery_fee">Phí giao hàng</string>
     <string name="save_changes">Lưu thay đổi</string>
     <string name="cancel">Hủy</string>
+    <string name="no_food_placeholder">Hiện chưa có món ăn nào thuộc danh mục này</string>
+    <string name="search_activity_title">Tìm kiếm</string>
+    <string name="search_type_food">Món ăn</string>
+    <string name="search_type_restaurant">Nhà hàng</string>
+    <string name="search_empty_state">Không tìm thấy kết quả phù hợp</string>
+    <string name="search_hint_keyword">Nhập từ khoá</string>
+    <string name="restaurant_detail_title">Thông tin nhà hàng</string>
+    <string name="restaurant_foods_title">Thực đơn</string>
+    <string name="restaurant_foods_empty">Nhà hàng chưa có món ăn nào.</string>
+    <string name="restaurant_address_label">Địa chỉ: %s</string>
+    <string name="restaurant_phone_label">Số điện thoại: %s</string>
+    <string name="restaurant_location_label">Khu vực: %s</string>
+    <string name="restaurant_delivery_fee_label">Phí giao hàng: %s</string>
+    <string-array name="search_type_entries">
+        <item>@string/search_type_food</item>
+        <item>@string/search_type_restaurant</item>
+    </string-array>
 </resources>

@@ -25,6 +25,12 @@
             android:name=".ui.menu.FoodEditorActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.restaurant.RestaurantDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.search.SearchActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.profile.ProfileEditActivity"
             android:exported="false" />
         <activity
