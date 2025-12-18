@@ -30,16 +30,14 @@ public class RestaurantDetailContract {
         private final String address;
         private final String phone;
         private final String location;
-        private final String deliveryFee;
         private final String imageUrl;
 
-        public RestaurantInfo(String name, String description, String address, String phone, String location, String deliveryFee, String imageUrl) {
+        public RestaurantInfo(String name, String description, String address, String phone, String location, String imageUrl) {
             this.name = name;
             this.description = description;
             this.address = address;
             this.phone = phone;
             this.location = location;
-            this.deliveryFee = deliveryFee;
             this.imageUrl = imageUrl;
         }
 
@@ -61,10 +59,6 @@ public class RestaurantDetailContract {
 
         public String getLocation() {
             return location;
-        }
-
-        public String getDeliveryFee() {
-            return deliveryFee;
         }
 
         public String getImageUrl() {

@@ -14,7 +14,6 @@ public interface RestaurantMapper {
     @Mapping(target = "user", ignore = true)
     @Mapping(target = "description", ignore = true)
     @Mapping(target = "bannerImage", ignore = true)
-    @Mapping(target = "deliveryFee", ignore = true)
     @Mapping(target = "orders", ignore = true)
     @Mapping(target = "foods", ignore = true)
     Restaurant toRestaurant(UserUpdateRequest request);

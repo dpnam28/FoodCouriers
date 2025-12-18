@@ -31,7 +31,6 @@ public class ProfileEditActivity extends AppCompatActivity implements ProfileCon
     private EditText edtPassword;
     private EditText edtDescription;
     private ImageView imgBanner;
-    private EditText edtDeliveryFee;
     private View layoutRestaurantFields;
     private ProgressBar progressBar;
     private Button btnSave;
@@ -86,7 +85,6 @@ public class ProfileEditActivity extends AppCompatActivity implements ProfileCon
         edtPassword = findViewById(R.id.edtPasswordEdit);
         edtDescription = findViewById(R.id.edtDescriptionEdit);
         imgBanner = findViewById(R.id.imgBanner);
-        edtDeliveryFee = findViewById(R.id.edtDeliveryFeeEdit);
         layoutRestaurantFields = findViewById(R.id.layoutRestaurantFields);
         btnSave = findViewById(R.id.btnSaveProfile);
         btnChooseImage = findViewById(R.id.btnChooseImage);
@@ -126,20 +124,8 @@ public class ProfileEditActivity extends AppCompatActivity implements ProfileCon
         }
 
         String description = null;
-        Double deliveryFee = null;
         if ("ROLE_RESTAURANT".equals(currentRole)) {
             description = edtDescription.getText().toString().trim();
-            String feeText = edtDeliveryFee.getText().toString().trim();
-            if (TextUtils.isEmpty(feeText)) {
-                ToastUtils.showTopToast(this, "Vui lòng nhập phí giao hàng", ToastUtils.TYPE_ERROR);
-                return;
-            }
-            try {
-                deliveryFee = Double.parseDouble(feeText);
-            } catch (NumberFormatException ex) {
-                ToastUtils.showTopToast(this, "Phí giao hàng không hợp lệ", ToastUtils.TYPE_ERROR);
-                return;
-            }
         }
 
         boolean isRestaurant = "ROLE_RESTAURANT".equals(currentRole);
@@ -151,8 +137,7 @@ public class ProfileEditActivity extends AppCompatActivity implements ProfileCon
                 phone,
                 address,
                 isRestaurant,
-                description,
-                deliveryFee
+                description
         );
 
         presenter.updateUser(form, selectedBannerUri);
@@ -182,11 +167,9 @@ public class ProfileEditActivity extends AppCompatActivity implements ProfileCon
             titleName.setText("Tên nhà hàng");
             layoutRestaurantFields.setVisibility(View.VISIBLE);
             edtDescription.setText(detail.getDescription());
-            edtDeliveryFee.setText(detail.getDeliveryFee() == null ? "" : String.valueOf(detail.getDeliveryFee()));
         } else {
             layoutRestaurantFields.setVisibility(View.GONE);
             edtDescription.setText("");
-            edtDeliveryFee.setText("");
         }
     }
 

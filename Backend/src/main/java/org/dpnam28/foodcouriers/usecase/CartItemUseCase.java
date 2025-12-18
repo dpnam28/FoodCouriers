@@ -12,6 +12,7 @@ import org.dpnam28.foodcouriers.domain.repository.UserRepository;
 import org.dpnam28.foodcouriers.presentation.dto.cart.CartItemCreateRequest;
 import org.dpnam28.foodcouriers.presentation.dto.cart.CartItemUpdateRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -67,6 +68,7 @@ public class CartItemUseCase {
         return cartItemRepository.findByUserId(userId);
     }
 
+    @Transactional
     public void deleteCartItemsByUserId(Long userId) {
         if (userId == null) {
             throw new AppException(ErrorCode.ARGUMENT_IS_REQUIRED, ErrorCode.ARGUMENT_IS_REQUIRED.formatMessage("ID người dùng"));

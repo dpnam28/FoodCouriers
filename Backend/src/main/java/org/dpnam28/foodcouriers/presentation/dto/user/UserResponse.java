@@ -19,6 +19,5 @@ public class UserResponse {
     private LocationResponse location;
     private String description;
     private String bannerImage;
-    private Double deliveryFee;
     private Boolean isAvailable;
 }

@@ -55,7 +55,6 @@ public class UserUseCase {
     private void createRestaurantProfile(User savedUser) {
         restaurantRepository.save(Restaurant.builder()
                 .user(savedUser)
-                .deliveryFee(0.0)
                 .build());
     }
 
@@ -79,7 +78,6 @@ public class UserUseCase {
             if (bannerImageUrl != null) {
                 restaurantUpdate.setBannerImage(bannerImageUrl);
             }
-            restaurantUpdate.setDeliveryFee(restaurant.getDeliveryFee());
             restaurantRepository.save(restaurantUpdate);
         }
         return userRepository.save(userUpdate);

@@ -73,9 +73,6 @@ public class ProfilePresenter implements ProfileContract.Presenter {
 
         if (form.isRestaurant()) {
             params.put("description", form.getDescription() == null ? "" : form.getDescription());
-            if (form.getDeliveryFee() != null) {
-                params.put("deliveryFee", String.valueOf(form.getDeliveryFee()));
-            }
         }
 
         Map<String, MultipartRequest.DataPart> files = new HashMap<>();
@@ -209,11 +206,6 @@ public class ProfilePresenter implements ProfileContract.Presenter {
         }
         String description = data.isNull("description") ? null : data.optString("description");
         String bannerImage = data.isNull("bannerImage") ? null : data.optString("bannerImage");
-        Double deliveryFee = null;
-        if (data.has("deliveryFee") && !data.isNull("deliveryFee")) {
-            deliveryFee = data.optDouble("deliveryFee");
-        }
-
         return new ProfileContract.UserDetail(
                 data.optLong("id"),
                 data.optString("email"),
@@ -224,8 +216,7 @@ public class ProfilePresenter implements ProfileContract.Presenter {
                 locationId,
                 locationName,
                 description,
-                bannerImage,
-                deliveryFee
+                bannerImage
         );
     }
 

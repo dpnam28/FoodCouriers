@@ -12,17 +12,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.nio.charset.StandardCharsets;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 public class RestaurantDetailPresenter implements RestaurantDetailContract.Presenter {
 
     private final Context context;
     private final ApiClient apiClient;
     private RestaurantDetailContract.View view;
-    private final NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
 
     public RestaurantDetailPresenter(Context context, RestaurantDetailContract.View view) {
         this.context = context.getApplicationContext();
@@ -60,16 +57,14 @@ public class RestaurantDetailPresenter implements RestaurantDetailContract.Prese
 
     private RestaurantDetailContract.RestaurantInfo parseRestaurantInfo(JSONObject obj) {
         if (obj == null) {
-            return new RestaurantDetailContract.RestaurantInfo("", "", "", "", "", "", null);
+            return new RestaurantDetailContract.RestaurantInfo("", "", "", "", "", null);
         }
-        String deliveryFeeValue = currencyFormat.format(obj.optDouble("deliveryFee"));
         return new RestaurantDetailContract.RestaurantInfo(
                 obj.optString("name"),
                 obj.optString("description"),
                 obj.optString("address"),
                 obj.optString("phoneNumber"),
                 obj.optString("location"),
-                deliveryFeeValue,
                 obj.optString("bannerImage")
         );
     }

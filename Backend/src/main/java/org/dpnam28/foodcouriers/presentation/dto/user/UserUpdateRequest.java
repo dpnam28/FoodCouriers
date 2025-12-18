@@ -19,5 +19,4 @@ public class UserUpdateRequest {
     @NotBlank(message = "Địa chỉ là bắt buộc")
     private String address;
     private String description;
-    private Double deliveryFee;
 }

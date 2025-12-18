@@ -37,7 +37,6 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Resta
     private TextView tvAddress;
     private TextView tvPhone;
     private TextView tvLocation;
-    private TextView tvDeliveryFee;
     private TextView tvNoFoods;
 
     private RestaurantDetailContract.Presenter presenter;
@@ -73,7 +72,6 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Resta
         tvAddress = header.findViewById(R.id.tvRestaurantAddress);
         tvPhone = header.findViewById(R.id.tvRestaurantPhone);
         tvLocation = header.findViewById(R.id.tvRestaurantLocation);
-        tvDeliveryFee = header.findViewById(R.id.tvRestaurantDeliveryFee);
         tvNoFoods = header.findViewById(R.id.tvRestaurantNoFoods);
         ImageButton btnBack = header.findViewById(R.id.btnBackRestaurant);
         btnBack.setOnClickListener(v -> finish());
@@ -116,7 +114,6 @@ public class RestaurantDetailActivity extends AppCompatActivity implements Resta
         tvAddress.setText(getString(R.string.restaurant_address_label, safeValue(info.getAddress())));
         tvPhone.setText(getString(R.string.restaurant_phone_label, safeValue(info.getPhone())));
         tvLocation.setText(getString(R.string.restaurant_location_label, safeValue(info.getLocation())));
-        tvDeliveryFee.setText(getString(R.string.restaurant_delivery_fee_label, safeValue(info.getDeliveryFee())));
 
         Glide.with(this)
                 .load(info.getImageUrl())

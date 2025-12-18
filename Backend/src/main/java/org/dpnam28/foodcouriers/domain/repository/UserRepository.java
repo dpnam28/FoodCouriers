@@ -2,8 +2,6 @@ package org.dpnam28.foodcouriers.domain.repository;
 
 import org.dpnam28.foodcouriers.domain.entity.User;
 
-import java.util.Optional;
-
 public interface UserRepository {
     User save(User user);
     User findByEmail(String email);

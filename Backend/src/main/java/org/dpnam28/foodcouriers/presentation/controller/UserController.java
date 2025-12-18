@@ -1,20 +1,29 @@
 package org.dpnam28.foodcouriers.presentation.controller;
 
-import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import org.dpnam28.foodcouriers.domain.dto.ApiResponse;
 import org.dpnam28.foodcouriers.domain.entity.Restaurant;
 import org.dpnam28.foodcouriers.domain.entity.User;
 import org.dpnam28.foodcouriers.presentation.dto.user.UserCreationRequest;
-import org.dpnam28.foodcouriers.presentation.dto.user.UserUpdateRequest;
-import org.dpnam28.foodcouriers.domain.dto.ApiResponse;
 import org.dpnam28.foodcouriers.presentation.dto.user.UserResponse;
+import org.dpnam28.foodcouriers.presentation.dto.user.UserUpdateRequest;
 import org.dpnam28.foodcouriers.presentation.mapper.RestaurantMapper;
 import org.dpnam28.foodcouriers.presentation.mapper.UserMapper;
 import org.dpnam28.foodcouriers.usecase.UserUseCase;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController
@@ -51,7 +60,6 @@ public class UserController {
         if ("ROLE_RESTAURANT".equals(user.getRole()) && user.getRestaurant() != null) {
             userResponse.setDescription(user.getRestaurant().getDescription());
             userResponse.setBannerImage(user.getRestaurant().getBannerImage());
-            userResponse.setDeliveryFee(user.getRestaurant().getDeliveryFee());
         } else if ("ROLE_COURIER".equals(user.getRole()) && user.getCourier() != null) {
             userResponse.setIsAvailable(user.getCourier().getIsAvailable());
         }

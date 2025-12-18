@@ -14,5 +14,4 @@ public class RestaurantSearchResponse {
     private String location;
     private String description;
     private String bannerImage;
-    private Double deliveryFee;
 }

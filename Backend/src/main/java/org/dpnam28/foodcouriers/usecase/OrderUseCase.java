@@ -58,15 +58,12 @@ public class OrderUseCase {
         double itemsTotal = cartItems.stream()
                 .mapToDouble(item -> item.getTotalPrice() != null ? item.getTotalPrice() : 0.0)
                 .sum();
-        double deliveryFee = restaurant.getDeliveryFee() != null ? restaurant.getDeliveryFee() : 0.0;
-        double finalTotal = itemsTotal + deliveryFee;
-
         Order order = Order.builder()
                 .restaurant(restaurant)
                 .customer(customer)
                 .courier(courier)
                 .status(request.getStatus() == null ? OrderStatus.PENDING : request.getStatus())
-                .totalPrice(finalTotal)
+                .totalPrice(itemsTotal)
                 .build();
 
         List<OrderDetail> details = new ArrayList<>();

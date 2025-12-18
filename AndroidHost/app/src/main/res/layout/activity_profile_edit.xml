@@ -180,29 +180,6 @@
                     android:textSize="14sp"
                     tools:ignore="LabelFor" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:text="@string/delivery_fee"
-                    android:textColor="@android:color/black"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
-
-                <EditText
-                    android:id="@+id/edtDeliveryFeeEdit"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="8dp"
-                    android:autofillHints=""
-                    android:background="@drawable/bg_input"
-                    android:inputType="numberDecimal"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:textColor="@color/gray"
-                    android:textSize="14sp"
-                    tools:ignore="LabelFor" />
-                
                 <ImageView
                     android:id="@+id/imgBanner"
                     android:layout_width="match_parent"

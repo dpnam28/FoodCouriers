@@ -30,7 +30,6 @@ public interface UserMapper {
     @Mapping(target = "location", ignore = true)
     @Mapping(target = "description", source = "restaurant.description")
     @Mapping(target = "bannerImage", source = "restaurant.bannerImage")
-    @Mapping(target = "deliveryFee", source = "restaurant.deliveryFee")
     @Mapping(target = "isAvailable", source = "courier.isAvailable")
     UserResponse toUserResponse(User user);
 }

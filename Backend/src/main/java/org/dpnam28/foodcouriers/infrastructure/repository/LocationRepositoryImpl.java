@@ -1,6 +1,7 @@
 package org.dpnam28.foodcouriers.infrastructure.repository;
 
-import lombok.RequiredArgsConstructor;
+import java.util.List;
+
 import org.dpnam28.foodcouriers.domain.entity.Location;
 import org.dpnam28.foodcouriers.domain.exception.AppException;
 import org.dpnam28.foodcouriers.domain.exception.ErrorCode;
@@ -8,8 +9,7 @@ import org.dpnam28.foodcouriers.domain.repository.LocationRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.Optional;
+import lombok.RequiredArgsConstructor;
 
 interface JpaLocationRepository extends JpaRepository<Location, Long> {
 }

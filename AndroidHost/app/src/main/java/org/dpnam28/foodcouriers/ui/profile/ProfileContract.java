@@ -36,7 +36,6 @@ public class ProfileContract {
         private final String locationName;
         private final String description;
         private final String bannerImage;
-        private final Double deliveryFee;
 
         public UserDetail(long id,
                           String email,
@@ -47,8 +46,7 @@ public class ProfileContract {
                           long locationId,
                           String locationName,
                           String description,
-                          String bannerImage,
-                          Double deliveryFee) {
+                          String bannerImage) {
             this.id = id;
             this.email = email;
             this.fullName = fullName;
@@ -59,7 +57,6 @@ public class ProfileContract {
             this.locationName = locationName;
             this.description = description;
             this.bannerImage = bannerImage;
-            this.deliveryFee = deliveryFee;
         }
 
         public long getId() {
@@ -102,9 +99,6 @@ public class ProfileContract {
             return bannerImage;
         }
 
-        public Double getDeliveryFee() {
-            return deliveryFee;
-        }
     }
 
     public static class UpdateForm {
@@ -115,7 +109,6 @@ public class ProfileContract {
         private final String address;
         private final boolean restaurant;
         private final String description;
-        private final Double deliveryFee;
 
         public UpdateForm(long userId,
                           String password,
@@ -123,8 +116,7 @@ public class ProfileContract {
                           String phoneNumber,
                           String address,
                           boolean restaurant,
-                          String description,
-                          Double deliveryFee) {
+                          String description) {
             this.userId = userId;
             this.password = password;
             this.fullName = fullName;
@@ -132,7 +124,6 @@ public class ProfileContract {
             this.address = address;
             this.restaurant = restaurant;
             this.description = description;
-            this.deliveryFee = deliveryFee;
         }
 
         public long getUserId() {
@@ -163,8 +154,5 @@ public class ProfileContract {
             return description;
         }
 
-        public Double getDeliveryFee() {
-            return deliveryFee;
-        }
     }
 }
