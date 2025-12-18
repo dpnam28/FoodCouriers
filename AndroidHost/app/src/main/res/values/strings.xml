@@ -71,7 +71,6 @@
     <string name="restaurant_address_label">Địa chỉ: %s</string>
     <string name="restaurant_phone_label">Số điện thoại: %s</string>
     <string name="restaurant_location_label">Khu vực: %s</string>
-    <string name="restaurant_delivery_fee_label">Phí giao hàng: %s</string>
     <string name="cart_empty">Giỏ hàng của bạn đang trống</string>
     <string name="cart_edit_quantity">Sửa số lượng</string>
     <string name="cart_delete">Xóa</string>
@@ -86,6 +85,23 @@
     <string name="subtotal">Tạm tính</string>
     <string name="total">Tổng</string>
     <string name="place_order">Đặt hàng</string>
+    <string name="default_price">0 ₫</string>
+    <string name="orders_title">Đơn hàng</string>
+    <string name="order_empty_state">Bạn chưa có đơn hàng nào</string>
+    <string name="order_cancel">Hủy đơn</string>
+    <string name="order_accept">Xác nhận</string>
+    <string name="order_customer_contact_format">Địa chỉ: %1$s\nSĐT: %2$s</string>
+    <string name="order_foods_label">Món: %1$s</string>
+    <string name="order_foods_empty">Chưa có món ăn</string>
+    <string name="order_total_format">Tổng: %1$s</string>
+    <string name="order_cancel_confirm">Bạn có chắc muốn hủy đơn hàng này?</string>
+    <string name="order_accept_confirm">Xác nhận đơn hàng này?</string>
+    <string name="order_status_pending">Chờ xác nhận</string>
+    <string name="order_status_accepted">Đã xác nhận</string>
+    <string name="order_status_delivered">Đã giao</string>
+    <string name="order_status_canceled">Đã hủy</string>
+    <string name="order_action_success">Cập nhật đơn hàng thành công</string>
+    <string name="order_courier_route_format">%1$s → %2$s</string>
     <string-array name="search_type_entries">
         <item>@string/search_type_food</item>
         <item>@string/search_type_restaurant</item>

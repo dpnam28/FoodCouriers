@@ -11,6 +11,8 @@ class CartContract {
 
         void onCartActionSuccess(String message);
 
+        void onOrdersPlaced(String message);
+
         void showError(String message);
     }
 
@@ -20,6 +22,8 @@ class CartContract {
         void deleteCartItem(long cartItemId);
 
         void updateCartItem(long cartItemId, int quantity);
+
+        void placeOrders(long customerId, List<CartItemModel> items);
 
         void detach();
     }

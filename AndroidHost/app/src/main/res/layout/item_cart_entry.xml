@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="8dp"
+    android:layout_marginBottom="12dp"
     app:cardCornerRadius="10dp"
     app:cardElevation="4dp">
 
@@ -24,14 +24,26 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tvCartQuantity"
+            android:id="@+id/tvCartRestaurant"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
             android:textColor="@color/gray"
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvCartFoodName" />
+            app:layout_constraintTop_toBottomOf="@id/tvCartFoodName" />
+
+        <TextView
+            android:id="@+id/tvCartQuantity"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textColor="@color/gray"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCartRestaurant" />
 
         <TextView
             android:id="@+id/tvCartPrice"
@@ -49,29 +61,31 @@
             android:id="@+id/btnEditQuantity"
             android:layout_width="0dp"
             android:layout_height="36dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
             android:background="@drawable/bg_button_secondary"
             android:text="@string/cart_edit_quantity"
             android:textAllCaps="false"
-            android:layout_marginEnd="20dp"
             android:textColor="@color/primary"
             android:textSize="13sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/btnDeleteItem"
-            app:layout_constraintTop_toBottomOf="@+id/tvCartPrice"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintEnd_toStartOf="@id/btnDeleteItem"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvCartPrice" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnDeleteItem"
             android:layout_width="0dp"
             android:layout_height="36dp"
+            android:layout_marginTop="12dp"
             android:background="@drawable/bg_button_primary"
             android:text="@string/cart_delete"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
             android:textSize="13sp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/btnEditQuantity"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvCartPrice" />
+            app:layout_constraintStart_toEndOf="@id/btnEditQuantity"
+            app:layout_constraintTop_toBottomOf="@id/tvCartPrice" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.dpnam28.foodcouriers.FinishScreenActivity;
 import org.dpnam28.foodcouriers.R;
+import org.dpnam28.foodcouriers.utils.ApiClient;
 import org.dpnam28.foodcouriers.utils.ToastUtils;
 
 import java.text.NumberFormat;
@@ -54,7 +55,13 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartA
         presenter = new CartPresenter(this, this);
 
         btnBack.setOnClickListener(v -> finish());
-        btnPlaceOrder.setOnClickListener(v -> startActivity(new Intent(this, FinishScreenActivity.class)));
+        btnPlaceOrder.setOnClickListener(v -> {
+            if (userId == 0L) {
+                ToastUtils.showTopToast(this, "Không xác định được người dùng", ToastUtils.TYPE_ERROR);
+                return;
+            }
+            presenter.placeOrders(userId, new ArrayList<>(cartItems));
+        });
     }
 
     @Override
@@ -131,6 +138,24 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartA
     public void onCartActionSuccess(String message) {
         ToastUtils.showTopToast(this, message, ToastUtils.TYPE_SUCCESS);
         presenter.loadCart(userId);
+    }
+
+    @Override
+    public void onOrdersPlaced(String message) {
+        ToastUtils.showTopToast(this, message, ToastUtils.TYPE_SUCCESS);
+        clearCartAndNavigate();
+    }
+
+    private void clearCartAndNavigate() {
+        ApiClient.getInstance(this).deleteJson("cart-items/user/" + userId,
+                response -> openFinishScreen(),
+                error -> openFinishScreen());
+    }
+
+    private void openFinishScreen() {
+        Intent intent = new Intent(this, FinishScreenActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     @Override

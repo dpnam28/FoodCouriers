@@ -123,7 +123,7 @@ public class ProfileEditActivity extends AppCompatActivity implements ProfileCon
             return;
         }
 
-        String description = null;
+        String description = "";
         if ("ROLE_RESTAURANT".equals(currentRole)) {
             description = edtDescription.getText().toString().trim();
         }

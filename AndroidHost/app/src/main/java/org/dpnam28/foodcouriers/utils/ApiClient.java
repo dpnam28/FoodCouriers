@@ -81,6 +81,15 @@ public class ApiClient {
         addToRequestQueue(buildJsonRequest(Request.Method.DELETE, endpoint, null, listener, errorListener));
     }
 
+    public void patchJson(
+            String endpoint,
+            JSONObject body,
+            Response.Listener<JSONObject> listener,
+            Response.ErrorListener errorListener
+    ) {
+        addToRequestQueue(buildJsonRequest(Request.Method.PATCH, endpoint, body, listener, errorListener));
+    }
+
     public void putMultipart(
             String endpoint,
             Map<String, String> params,
