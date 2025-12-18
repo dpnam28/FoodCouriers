@@ -18,13 +18,11 @@ import java.util.Map;
 
 class CartPresenter implements CartContract.Presenter {
 
-    private final Context context;
     private final ApiClient apiClient;
     private CartContract.View view;
 
     CartPresenter(Context context, CartContract.View view) {
-        this.context = context.getApplicationContext();
-        this.apiClient = ApiClient.getInstance(this.context);
+        this.apiClient = ApiClient.getInstance(context.getApplicationContext());
         this.view = view;
     }
 

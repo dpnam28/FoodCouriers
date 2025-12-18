@@ -22,6 +22,9 @@
             android:name=".ui.order.OrderActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.order.SelectCourierActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.menu.RestaurantMenuActivity"
             android:exported="false" />
         <activity

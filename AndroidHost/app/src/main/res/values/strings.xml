@@ -13,12 +13,12 @@
     <string name="role_customer">Khách hàng</string>
     <string name="role_restaurant">Nhà hàng</string>
     <string name="role_courier">Nhân viên giao hàng</string>
-    <string name="search">Search</string>
+    <string name="search">Tìm kiếm</string>
     <string name="buy_now">Buy Now</string>
     <string name="burger_image">Burger image</string>
     <string name="add_to_cart">Thêm vào giỏ hàng</string>
     <string name="pizza">Pizza</string>
-    <string name="home">Home</string>
+    <string name="home">Trang chủ</string>
     <string name="profile">Thông tin cá nhân</string>
     <string name="cart">Giỏ hàng</string>
     <string name="banner">Banner</string>
@@ -102,6 +102,14 @@
     <string name="order_status_canceled">Đã hủy</string>
     <string name="order_action_success">Cập nhật đơn hàng thành công</string>
     <string name="order_courier_route_format">%1$s → %2$s</string>
+    <string name="order_mark_delivered">Giao thành công</string>
+    <string name="order_deliver_confirm">Bạn đã hoàn tất đơn hàng này?</string>
+    <string name="select_courier_title">Chọn nhân viên giao hàng</string>
+    <string name="courier_empty_state">Không có viên giao hàng phù hợp</string>
+    <string name="courier_select">Chọn</string>
+    <string name="courier_assign_success">Đã giao cho viên giao hàng đơn hàng</string>
+    <string name="courier_phone_format">SĐT: %s</string>
+    <string name="courier_location_format">Khu vực: %s</string>
     <string-array name="search_type_entries">
         <item>@string/search_type_food</item>
         <item>@string/search_type_restaurant</item>

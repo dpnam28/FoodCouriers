@@ -33,7 +33,6 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartA
     private Button btnPlaceOrder;
     private ListView listCartItems;
     private TextView tvEmptyCart;
-    private TextView tvDeliveryValue;
     private TextView tvSubTotalValue;
     private TextView tvTotalValue;
     private ProgressBar progressBar;
@@ -79,7 +78,6 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartA
         btnPlaceOrder = findViewById(R.id.btnPlaceOrder);
         listCartItems = findViewById(R.id.listCartItems);
         tvEmptyCart = findViewById(R.id.tvEmptyCart);
-        tvDeliveryValue = findViewById(R.id.tvDeliveryValue);
         tvSubTotalValue = findViewById(R.id.tvSubTotalValue);
         tvTotalValue = findViewById(R.id.tvTotalValue);
         progressBar = findViewById(R.id.progressCart);
@@ -104,11 +102,8 @@ public class CartActivity extends AppCompatActivity implements CartAdapter.CartA
         for (CartItemModel item : cartItems) {
             subTotal += item.getTotalPrice();
         }
-        double delivery = 0d;
-        double total = subTotal + delivery;
         tvSubTotalValue.setText(currencyFormat.format(subTotal));
-        tvDeliveryValue.setText(currencyFormat.format(delivery));
-        tvTotalValue.setText(currencyFormat.format(total));
+        tvTotalValue.setText(currencyFormat.format(subTotal));
     }
 
     private void toggleEmptyState() {

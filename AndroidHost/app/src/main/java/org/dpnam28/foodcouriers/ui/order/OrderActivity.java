@@ -1,5 +1,6 @@
 package org.dpnam28.foodcouriers.ui.order;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -87,6 +88,8 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
     public void onOrdersLoaded(List<OrderModel> orders) {
         if (orders == null) {
             orders = new ArrayList<>();
+        } else {
+            orders.sort((o1, o2) -> Long.compare(o2.getId(), o1.getId()));
         }
         adapter.setItems(orders);
         boolean isEmpty = orders.isEmpty();
@@ -122,11 +125,30 @@ public class OrderActivity extends AppCompatActivity implements OrderContract.Vi
 
     @Override
     public void onAcceptOrder(OrderModel order) {
+        if ("ROLE_RESTAURANT".equals(userRole)) {
+            openSelectCourier(order.getId());
+            return;
+        }
         showConfirmationDialog(
                 getString(R.string.order_accept_confirm),
                 getString(R.string.order_accept),
                 () -> presenter.acceptOrder(order.getId(), userId)
         );
+    }
+
+    @Override
+    public void onMarkDelivered(OrderModel order) {
+        showConfirmationDialog(
+                getString(R.string.order_deliver_confirm),
+                getString(R.string.order_mark_delivered),
+                () -> presenter.deliverOrder(order.getId(), userId)
+        );
+    }
+
+    private void openSelectCourier(long orderId) {
+        Intent intent = new Intent(this, SelectCourierActivity.class);
+        intent.putExtra(SelectCourierActivity.EXTRA_ORDER_ID, orderId);
+        startActivity(intent);
     }
 
     private void showConfirmationDialog(String message, String confirmLabel, Runnable confirmAction) {

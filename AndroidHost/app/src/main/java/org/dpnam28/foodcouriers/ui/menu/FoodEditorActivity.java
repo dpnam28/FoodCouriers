@@ -1,5 +1,6 @@
 package org.dpnam28.foodcouriers.ui.menu;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -35,6 +36,7 @@ public class FoodEditorActivity extends AppCompatActivity implements FoodEditorC
     private EditText edtDescription;
     private EditText edtPrice;
     private Spinner spinnerCategory;
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
     private Switch switchActive;
     private TextView foodStatus;
     private ImageView imgPreview;
@@ -59,6 +61,7 @@ public class FoodEditorActivity extends AppCompatActivity implements FoodEditorC
                 }
             });
 
+    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,7 +123,7 @@ public class FoodEditorActivity extends AppCompatActivity implements FoodEditorC
             ToastUtils.showTopToast(this, "Vui lòng nhập giá", ToastUtils.TYPE_ERROR);
             showLoading(false);
             return;
-        };
+        }
 
         double price;
         try {

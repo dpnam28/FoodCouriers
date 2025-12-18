@@ -21,6 +21,8 @@ class OrderContract {
 
         void acceptOrder(long orderId, long restaurantId);
 
+        void deliverOrder(long orderId, long courierId);
+
         void detach();
     }
 }

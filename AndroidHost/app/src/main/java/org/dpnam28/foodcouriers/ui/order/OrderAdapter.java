@@ -24,6 +24,8 @@ class OrderAdapter extends BaseAdapter {
         void onCancelOrder(OrderModel order);
 
         void onAcceptOrder(OrderModel order);
+
+        void onMarkDelivered(OrderModel order);
     }
 
     private final List<OrderModel> items = new ArrayList<>();
@@ -127,12 +129,16 @@ class OrderAdapter extends BaseAdapter {
     private void bindActions(ViewHolder holder, OrderModel order) {
         boolean isRestaurant = "ROLE_RESTAURANT".equals(userRole);
         boolean isCustomer = "ROLE_CUSTOMER".equals(userRole);
+        boolean isCourier = "ROLE_COURIER".equals(userRole);
+
         boolean canCancel = order.canCancel() && (isRestaurant || isCustomer);
         boolean canAccept = order.canAccept() && isRestaurant;
+        boolean canDeliver = isCourier && "ACCEPTED".equals(order.getStatus());
 
         holder.btnCancel.setVisibility(canCancel ? View.VISIBLE : View.GONE);
-        holder.btnAccept.setVisibility(canAccept ? View.VISIBLE : View.GONE);
-        holder.layoutActions.setVisibility((canCancel || canAccept) ? View.VISIBLE : View.GONE);
+        holder.btnAccept.setVisibility((canAccept || canDeliver) ? View.VISIBLE : View.GONE);
+        holder.btnAccept.setText(canDeliver ? context.getString(R.string.order_mark_delivered) : context.getString(R.string.order_accept));
+        holder.layoutActions.setVisibility((canCancel || canAccept || canDeliver) ? View.VISIBLE : View.GONE);
 
         holder.btnCancel.setOnClickListener(v -> {
             if (actionListener != null) {
@@ -140,7 +146,10 @@ class OrderAdapter extends BaseAdapter {
             }
         });
         holder.btnAccept.setOnClickListener(v -> {
-            if (actionListener != null) {
+            if (actionListener == null) return;
+            if (canDeliver) {
+                actionListener.onMarkDelivered(order);
+            } else {
                 actionListener.onAcceptOrder(order);
             }
         });

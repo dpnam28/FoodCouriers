@@ -86,6 +86,16 @@ class OrderPresenter implements OrderContract.Presenter {
                 this::handleActionError);
     }
 
+    @Override
+    public void deliverOrder(long orderId, long courierId) {
+        if (view == null) return;
+        String endpoint = "orders/" + orderId + "/deliver?courierId=" + courierId;
+        view.showLoading(true);
+        apiClient.patchJson(endpoint, null,
+                this::handleActionSuccess,
+                this::handleActionError);
+    }
+
     private void handleActionSuccess(JSONObject response) {
         if (view == null) return;
         view.showLoading(false);

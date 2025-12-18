@@ -59,7 +59,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="6dp"
-                        android:text="Freedom way, Lekki phase"
                         android:textSize="12sp"
                         android:textColor="#4B5563" />
                 </LinearLayout>
@@ -113,19 +112,18 @@
                     android:src="@drawable/img_banner_burger"
                     android:contentDescription="@string/banner" />
 
-                <!-- Overlay nội dung -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="16dp"
+                    android:padding="20dp"
                     android:layout_gravity="top|start">
 
                     <TextView
                         android:id="@+id/txtOfferTitle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Special Offer\nfor March"
+                        android:text="Bữu ăn đặc biệt\ndành riêng cho bạn"
                         android:textColor="@android:color/white"
                         android:textSize="16sp"
                         android:textStyle="bold" />
@@ -135,26 +133,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
-                        android:text="We are here with the best\ndeserts in town."
+                        android:text="Hãy đến ngay cửa hàng\ncủa chúng tôi"
                         android:textColor="@android:color/white"
                         android:textSize="10sp"
                         tools:ignore="SmallSp" />
 
-                    <TextView
-                        android:id="@+id/btnBuyNow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:paddingStart="12dp"
-                        android:paddingEnd="12dp"
-                        android:paddingTop="4dp"
-                        android:paddingBottom="4dp"
-                        android:text="@string/buy_now"
-                        android:textSize="10sp"
-                        android:textStyle="bold"
-                        android:background="@drawable/bg_button_secondary"
-                        android:textColor="@color/primary"
-                        tools:ignore="SmallSp" />
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
@@ -242,12 +225,11 @@
             android:paddingStart="24dp"
             android:paddingEnd="24dp">
 
-            <!-- Home -->
             <LinearLayout
                 android:id="@+id/navHome"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="2"
+                android:layout_weight="2.5"
                 android:layout_marginEnd="50dp"
                 android:orientation="horizontal"
                 android:gravity="center"

@@ -21,6 +21,7 @@ import org.dpnam28.foodcouriers.R;
 import org.dpnam28.foodcouriers.ui.cart.CartActivity;
 import org.dpnam28.foodcouriers.ui.fooddetail.FoodDetailActivity;
 import org.dpnam28.foodcouriers.ui.menu.RestaurantMenuActivity;
+import org.dpnam28.foodcouriers.ui.order.OrderActivity;
 import org.dpnam28.foodcouriers.ui.profile.ProfileActivity;
 import org.dpnam28.foodcouriers.ui.search.SearchActivity;
 import org.dpnam28.foodcouriers.utils.ToastUtils;
@@ -37,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements CategoryAdapter.O
     private TextView tvEmptyFoods;
     private EditText edtSearch;
     private ImageView iconSearch;
-
+    private TextView txtAddress;
     private String userRole;
     private CategoryAdapter categoryAdapter;
     private FoodAdapter foodAdapter;
@@ -54,6 +55,9 @@ public class MainActivity extends AppCompatActivity implements CategoryAdapter.O
         setupRecyclerViews();
 
         userRole = getSharedPreferences("userInfo", MODE_PRIVATE).getString("role", "");
+        txtAddress.setText(String.format("%s, %s",
+                getSharedPreferences("userInfo", MODE_PRIVATE).getString("address", ""),
+                getSharedPreferences("userInfo", MODE_PRIVATE).getString("location", "")));
         setupBottomNavForRole();
         setupBottomNavigationActions();
         presenter = new MainPresenter(this, this);
@@ -73,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements CategoryAdapter.O
         tvEmptyFoods = findViewById(R.id.tvEmptyFoods);
         edtSearch = findViewById(R.id.txtSearchHint);
         iconSearch = findViewById(R.id.icSearch);
+        txtAddress = findViewById(R.id.txtAddress);
     }
 
     private void setupRecyclerViews() {
@@ -98,6 +103,7 @@ public class MainActivity extends AppCompatActivity implements CategoryAdapter.O
                 ToastUtils.showTopToast(this, getString(R.string.not_authorized_restaurant), ToastUtils.TYPE_ERROR);
             }
         });
+        navHistory.setOnClickListener(v -> startActivity(new Intent(this, OrderActivity.class)));
         View.OnClickListener launchSearch = v -> openSearchActivity();
         iconSearch.setOnClickListener(launchSearch);
         edtSearch.setOnEditorActionListener((v, actionId, event) -> {
@@ -111,13 +117,12 @@ public class MainActivity extends AppCompatActivity implements CategoryAdapter.O
     }
 
     private void setupBottomNavForRole() {
+        navHistory.setVisibility(View.VISIBLE);
         if ("ROLE_RESTAURANT".equals(userRole)) {
             navCart.setVisibility(View.GONE);
-            navHistory.setVisibility(View.GONE);
             navMenu.setVisibility(View.VISIBLE);
         } else {
             navCart.setVisibility(View.VISIBLE);
-            navHistory.setVisibility(View.VISIBLE);
             navMenu.setVisibility(View.GONE);
         }
     }
