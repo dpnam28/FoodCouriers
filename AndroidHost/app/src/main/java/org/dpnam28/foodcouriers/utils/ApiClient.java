@@ -73,6 +73,14 @@ public class ApiClient {
         addToRequestQueue(buildJsonRequest(Request.Method.PUT, endpoint, body, listener, errorListener));
     }
 
+    public void deleteJson(
+            String endpoint,
+            Response.Listener<JSONObject> listener,
+            Response.ErrorListener errorListener
+    ) {
+        addToRequestQueue(buildJsonRequest(Request.Method.DELETE, endpoint, null, listener, errorListener));
+    }
+
     public void putMultipart(
             String endpoint,
             Map<String, String> params,

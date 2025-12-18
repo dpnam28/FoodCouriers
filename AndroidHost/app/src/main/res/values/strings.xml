@@ -16,11 +16,11 @@
     <string name="search">Search</string>
     <string name="buy_now">Buy Now</string>
     <string name="burger_image">Burger image</string>
-    <string name="add_to_cart">Add to cart</string>
+    <string name="add_to_cart">Thêm vào giỏ hàng</string>
     <string name="pizza">Pizza</string>
     <string name="home">Home</string>
     <string name="profile">Thông tin cá nhân</string>
-    <string name="cart">Cart</string>
+    <string name="cart">Giỏ hàng</string>
     <string name="banner">Banner</string>
     <string name="message">Message</string>
     <string name="back">Back</string>
@@ -72,6 +72,20 @@
     <string name="restaurant_phone_label">Số điện thoại: %s</string>
     <string name="restaurant_location_label">Khu vực: %s</string>
     <string name="restaurant_delivery_fee_label">Phí giao hàng: %s</string>
+    <string name="cart_empty">Giỏ hàng của bạn đang trống</string>
+    <string name="cart_edit_quantity">Sửa số lượng</string>
+    <string name="cart_delete">Xóa</string>
+    <string name="cart_delete_confirm">Bạn có chắc muốn xóa món này khỏi giỏ hàng?</string>
+    <string name="cart_quantity_format">Số lượng: %1$d</string>
+    <string name="cart_quantity_error">Số lượng phải lớn hơn hoặc bằng 1</string>
+    <string name="cart_update_title">Cập nhật số lượng</string>
+    <string name="cart_quantity_hint">Nhập số lượng mới</string>
+    <string name="cart_update_success">Đã cập nhật số lượng</string>
+    <string name="cart_delete_success">Đã xóa món khỏi giỏ hàng</string>
+    <string name="cart_add_success">Đã thêm món vào giỏ hàng</string>
+    <string name="subtotal">Tạm tính</string>
+    <string name="total">Tổng</string>
+    <string name="place_order">Đặt hàng</string>
     <string-array name="search_type_entries">
         <item>@string/search_type_food</item>
         <item>@string/search_type_restaurant</item>

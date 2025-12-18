@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/rootOrderDetails"
+    android:id="@+id/rootCart"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white">
@@ -13,507 +13,82 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="23dp"
         android:background="@drawable/bg_button_secondary"
-        android:src="@drawable/ic_back"
-        android:scaleType="centerInside"
-        app:tint="@color/primary"
         android:contentDescription="@string/back"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_back"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:tint="@color/primary" />
 
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Order details"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/cart"
         android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnBack"
-        android:textSize="25sp"
-        android:textStyle="bold" />
+        app:layout_constraintTop_toBottomOf="@id/btnBack" />
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/scrollOrderDetails"
+    <ListView
+        android:id="@+id/listCartItems"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:fillViewport="true"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="12dp"
+        android:layout_marginTop="10dp"
+        android:scrollbars="none"
+        android:listSelector="@android:color/transparent"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         app:layout_constraintBottom_toTopOf="@+id/layoutPlaceOrder"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTitle"
-        app:layout_constraintVertical_bias="0">
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:orientation="vertical">
+    <TextView
+        android:id="@+id/tvEmptyCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cart_empty"
+        android:textColor="@color/gray"
+        android:textSize="14sp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/layoutPlaceOrder"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardItem1"
-                android:layout_width="match_parent"
-                android:layout_height="103dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginHorizontal="3dp"
-                app:cardCornerRadius="7dp"
-                app:cardElevation="4dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="8dp">
-
-                    <!-- Ảnh món -->
-                    <ImageView
-                        android:id="@+id/imgItem1"
-                        android:layout_width="62dp"
-                        android:layout_height="62dp"
-                        android:background="@drawable/bg_button_secondary"
-                        android:contentDescription="@string/image"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/img_menu_chicken_burger"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <!-- Tên món -->
-                    <TextView
-                        android:id="@+id/tvItem1Name"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="Chicken Burger"
-                        android:textColor="@android:color/black"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toStartOf="@id/layoutQty1"
-                        app:layout_constraintStart_toEndOf="@id/imgItem1"
-                        app:layout_constraintTop_toTopOf="@id/imgItem1" />
-
-                    <!-- Tên quán -->
-                    <TextView
-                        android:id="@+id/tvItem1Restaurant"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="2dp"
-                        android:text="Burger Factory LTD"
-                        android:textColor="#803B3B3B"
-                        android:textSize="14sp"
-                        app:layout_constraintEnd_toStartOf="@id/layoutQty1"
-                        app:layout_constraintStart_toEndOf="@id/imgItem1"
-                        app:layout_constraintTop_toBottomOf="@id/tvItem1Name" />
-
-                    <!-- Giá -->
-                    <TextView
-                        android:id="@+id/tvItem1Price"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="4dp"
-                        android:text="$ 20"
-                        android:textColor="@android:color/black"
-                        android:textSize="17sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toEndOf="@id/imgItem1"
-                        app:layout_constraintTop_toBottomOf="@id/tvItem1Restaurant" />
-
-                    <!-- Quantity stepper -->
-                    <LinearLayout
-                        android:id="@+id/layoutQty1"
-                        android:layout_width="92dp"
-                        android:layout_height="26dp"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:paddingStart="6dp"
-                        android:paddingEnd="6dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <ImageView
-                            android:id="@+id/btnMinus1"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:contentDescription="@string/decrease"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/ic_decrease" />
-
-                        <TextView
-                            android:id="@+id/tvQty1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="1"
-                            android:textColor="#181818"
-                            android:textSize="16sp" />
-
-                        <ImageView
-                            android:id="@+id/btnPlus1"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:contentDescription="@string/increase"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/ic_increase" />
-                    </LinearLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardItem2"
-                android:layout_width="match_parent"
-                android:layout_height="103dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginHorizontal="3dp"
-                app:cardCornerRadius="7dp"
-                app:cardElevation="4dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="8dp">
-
-                    <ImageView
-                        android:id="@+id/imgItem2"
-                        android:layout_width="62dp"
-                        android:layout_height="62dp"
-                        android:background="@drawable/bg_button_secondary"
-                        android:contentDescription="@string/image"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/img_menu_onion_pizza"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/tvItem2Name"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="Onion Pizza"
-                        android:textColor="@android:color/black"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toStartOf="@id/layoutQty2"
-                        app:layout_constraintStart_toEndOf="@id/imgItem2"
-                        app:layout_constraintTop_toTopOf="@id/imgItem2" />
-
-                    <TextView
-                        android:id="@+id/tvItem2Restaurant"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="2dp"
-                        android:text="Pizza Palace"
-                        android:textColor="#803B3B3B"
-                        android:textSize="14sp"
-                        app:layout_constraintEnd_toStartOf="@id/layoutQty2"
-                        app:layout_constraintStart_toEndOf="@id/imgItem2"
-                        app:layout_constraintTop_toBottomOf="@id/tvItem2Name" />
-
-                    <TextView
-                        android:id="@+id/tvItem2Price"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="4dp"
-                        android:text="$ 15"
-                        android:textColor="@android:color/black"
-                        android:textSize="17sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toEndOf="@id/imgItem2"
-                        app:layout_constraintTop_toBottomOf="@id/tvItem2Restaurant" />
-
-                    <LinearLayout
-                        android:id="@+id/layoutQty2"
-                        android:layout_width="92dp"
-                        android:layout_height="26dp"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:paddingStart="6dp"
-                        android:paddingEnd="6dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <ImageView
-                            android:id="@+id/btnMinus2"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:contentDescription="@string/decrease"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/ic_decrease" />
-
-                        <TextView
-                            android:id="@+id/tvQty2"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="1"
-                            android:textColor="#181818"
-                            android:textSize="16sp" />
-
-                        <ImageView
-                            android:id="@+id/btnPlus2"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:contentDescription="@string/increase"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/ic_increase" />
-                    </LinearLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardItem"
-                android:layout_width="match_parent"
-                android:layout_height="103dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginHorizontal="3dp"
-                app:cardCornerRadius="7dp"
-                app:cardElevation="4dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="8dp">
-
-                    <ImageView
-                        android:id="@+id/imgItem4"
-                        android:layout_width="62dp"
-                        android:layout_height="62dp"
-                        android:background="@drawable/bg_button_secondary"
-                        android:contentDescription="@string/image"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/img_menu_spicy_shawarma"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/tvItem4Name"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="Spicy Shawarma"
-                        android:textColor="@android:color/black"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toStartOf="@id/layoutQty4"
-                        app:layout_constraintStart_toEndOf="@id/imgItem4"
-                        app:layout_constraintTop_toTopOf="@id/imgItem4" />
-
-                    <TextView
-                        android:id="@+id/tvItem4Restaurant"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="2dp"
-                        android:text="Hot Cool Spot"
-                        android:textColor="#803B3B3B"
-                        android:textSize="14sp"
-                        app:layout_constraintEnd_toStartOf="@id/layoutQty4"
-                        app:layout_constraintStart_toEndOf="@id/imgItem4"
-                        app:layout_constraintTop_toBottomOf="@id/tvItem4Name" />
-
-                    <TextView
-                        android:id="@+id/tvItem4Price"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="4dp"
-                        android:text="$ 15"
-                        android:textColor="@android:color/black"
-                        android:textSize="17sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toEndOf="@id/imgItem4"
-                        app:layout_constraintTop_toBottomOf="@id/tvItem4Restaurant" />
-
-                    <LinearLayout
-                        android:id="@+id/layoutQty4"
-                        android:layout_width="92dp"
-                        android:layout_height="26dp"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:paddingStart="6dp"
-                        android:paddingEnd="6dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <ImageView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:contentDescription="@string/decrease"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/ic_decrease" />
-
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="1"
-                            android:textColor="#181818"
-                            android:textSize="16sp" />
-
-                        <ImageView
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:contentDescription="@string/increase"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/ic_increase" />
-                    </LinearLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardItem3"
-                android:layout_width="match_parent"
-                android:layout_height="103dp"
-                android:layout_marginTop="12dp"
-                android:layout_marginHorizontal="3dp"
-                app:cardCornerRadius="7dp"
-                app:cardElevation="4dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="8dp">
-
-                    <ImageView
-                        android:id="@+id/imgItem3"
-                        android:layout_width="62dp"
-                        android:layout_height="62dp"
-                        android:background="@drawable/bg_button_secondary"
-                        android:contentDescription="@string/image"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/img_menu_spicy_shawarma"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/tvItem3Name"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="Spicy Shawarma"
-                        android:textColor="@android:color/black"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
-                        app:layout_constraintEnd_toStartOf="@id/layoutQty3"
-                        app:layout_constraintStart_toEndOf="@id/imgItem3"
-                        app:layout_constraintTop_toTopOf="@id/imgItem3" />
-
-                    <TextView
-                        android:id="@+id/tvItem3Restaurant"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="2dp"
-                        android:text="Hot Cool Spot"
-                        android:textColor="#803B3B3B"
-                        android:textSize="14sp"
-                        app:layout_constraintEnd_toStartOf="@id/layoutQty3"
-                        app:layout_constraintStart_toEndOf="@id/imgItem3"
-                        app:layout_constraintTop_toBottomOf="@id/tvItem3Name" />
-
-                    <TextView
-                        android:id="@+id/tvItem3Price"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="4dp"
-                        android:text="$ 15"
-                        android:textColor="@android:color/black"
-                        android:textSize="17sp"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toEndOf="@id/imgItem3"
-                        app:layout_constraintTop_toBottomOf="@id/tvItem3Restaurant" />
-
-                    <LinearLayout
-                        android:id="@+id/layoutQty3"
-                        android:layout_width="92dp"
-                        android:layout_height="26dp"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:paddingStart="6dp"
-                        android:paddingEnd="6dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <ImageView
-                            android:id="@+id/btnMinus3"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:contentDescription="@string/decrease"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/ic_decrease" />
-
-                        <TextView
-                            android:id="@+id/tvQty3"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:gravity="center"
-                            android:text="1"
-                            android:textColor="#181818"
-                            android:textSize="16sp" />
-
-                        <ImageView
-                            android:id="@+id/btnPlus3"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:contentDescription="@string/increase"
-                            android:scaleType="centerInside"
-                            android:src="@drawable/ic_increase" />
-                    </LinearLayout>
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="3dp"/>
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+    <ProgressBar
+        android:id="@+id/progressCart"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutPlaceOrder"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="16dp"
         android:background="@drawable/bg_button_primary"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
-
-        <!-- Delivery row -->
         <TextView
             android:id="@+id/tvDeliveryLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Delivery Charge"
+            android:text="@string/delivery_fee"
             android:textColor="@android:color/white"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -523,20 +98,19 @@
             android:id="@+id/tvDeliveryValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="10 $"
+            android:text="0 ₫"
             android:textColor="@android:color/white"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@id/tvDeliveryLabel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvDeliveryLabel" />
 
-        <!-- Sub-total row -->
         <TextView
             android:id="@+id/tvSubTotalLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Sub-Total"
+            android:layout_marginTop="12dp"
+            android:text="@string/subtotal"
             android:textColor="@android:color/white"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
@@ -546,20 +120,19 @@
             android:id="@+id/tvSubTotalValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="100 $"
+            android:text="0 ₫"
             android:textColor="@android:color/white"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@id/tvSubTotalLabel"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvSubTotalLabel" />
 
-        <!-- Total row -->
         <TextView
             android:id="@+id/tvTotalLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Total"
+            android:text="@string/total"
             android:textColor="@android:color/white"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -570,7 +143,7 @@
             android:id="@+id/tvTotalValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="110 $"
+            android:text="0 ₫"
             android:textColor="@android:color/white"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -584,10 +157,9 @@
             android:layout_height="57dp"
             android:layout_marginTop="16dp"
             android:background="@drawable/bg_button_secondary"
-            android:elevation="20dp"
-            android:text="Place My Order"
+            android:text="@string/place_order"
             android:textAllCaps="false"
-            android:textColor="#D61355"
+            android:textColor="@color/primary"
             android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -596,4 +168,5 @@
             app:layout_constraintTop_toBottomOf="@id/tvTotalLabel" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

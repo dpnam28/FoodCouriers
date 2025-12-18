@@ -1,7 +1,9 @@
 package org.dpnam28.foodcouriers.ui.fooddetail;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -12,12 +14,17 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.VolleyError;
 import com.bumptech.glide.Glide;
 
 import org.dpnam28.foodcouriers.R;
 import org.dpnam28.foodcouriers.ui.cart.CartActivity;
+import org.dpnam28.foodcouriers.utils.ApiClient;
 import org.dpnam28.foodcouriers.utils.ToastUtils;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.nio.charset.StandardCharsets;
 import java.text.NumberFormat;
 import java.util.Locale;
 
@@ -34,7 +41,10 @@ public class FoodDetailActivity extends AppCompatActivity implements FoodDetailC
     private ProgressBar progressBar;
 
     private FoodDetailContract.Presenter presenter;
+    private ApiClient apiClient;
     private long foodId;
+    private long userId;
+    private String userRole;
     private final NumberFormat currencyFormat = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
 
     @Override
@@ -43,6 +53,8 @@ public class FoodDetailActivity extends AppCompatActivity implements FoodDetailC
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_food_detail);
         assignView();
+        apiClient = ApiClient.getInstance(this);
+        initUserInfo();
 
         foodId = getIntent().getLongExtra(EXTRA_FOOD_ID, 0L);
         if (foodId == 0L) {
@@ -54,10 +66,7 @@ public class FoodDetailActivity extends AppCompatActivity implements FoodDetailC
         presenter = new FoodDetailPresenter(this, this);
 
         btnBack.setOnClickListener(v -> finish());
-        btnAddToCart.setOnClickListener(v -> {
-            Intent intent = new Intent(this, CartActivity.class);
-            startActivity(intent);
-        });
+        btnAddToCart.setOnClickListener(v -> addToCart());
 
         presenter.loadFood(foodId);
     }
@@ -70,6 +79,19 @@ public class FoodDetailActivity extends AppCompatActivity implements FoodDetailC
         tvDescription = findViewById(R.id.tvDescription);
         tvPrice = findViewById(R.id.tvPrice);
         progressBar = findViewById(R.id.progressFoodDetail);
+    }
+
+    private void initUserInfo() {
+        SharedPreferences prefs = getSharedPreferences("userInfo", MODE_PRIVATE);
+        userRole = prefs.getString("role", "");
+        String idValue = prefs.getString("id", "");
+        try {
+            userId = Long.parseLong(idValue);
+        } catch (NumberFormatException e) {
+            userId = 0L;
+        }
+        boolean isCustomer = "ROLE_CUSTOMER".equals(userRole);
+        btnAddToCart.setVisibility(isCustomer ? View.VISIBLE : View.GONE);
     }
 
     @Override
@@ -86,6 +108,54 @@ public class FoodDetailActivity extends AppCompatActivity implements FoodDetailC
                 .load(detail.getImageUrl())
                 .centerCrop()
                 .into(imgFood);
+    }
+
+    private void addToCart() {
+        if (!"ROLE_CUSTOMER".equals(userRole)) {
+            ToastUtils.showTopToast(this, "Chỉ khách hàng mới có thể thêm vào giỏ hàng", ToastUtils.TYPE_ERROR);
+            return;
+        }
+        if (userId == 0L) {
+            ToastUtils.showTopToast(this, "Không xác định được người dùng", ToastUtils.TYPE_ERROR);
+            return;
+        }
+        JSONObject body = new JSONObject();
+        try {
+            body.put("userId", userId);
+            body.put("foodId", foodId);
+            body.put("quantity", 1);
+        } catch (JSONException e) {
+            ToastUtils.showTopToast(this, "Dữ liệu không hợp lệ", ToastUtils.TYPE_ERROR);
+            return;
+        }
+        showLoading(true);
+        apiClient.postJson("cart-items", body,
+                response -> {
+                    showLoading(false);
+                    ToastUtils.showTopToast(this, getString(R.string.cart_add_success), ToastUtils.TYPE_SUCCESS);
+                    startActivity(new Intent(this, CartActivity.class));
+                },
+                error -> {
+                    showLoading(false);
+                    ToastUtils.showTopToast(this, parseErrorMessage(error), ToastUtils.TYPE_ERROR);
+                });
+    }
+
+    private String parseErrorMessage(VolleyError error) {
+        if (error == null || error.networkResponse == null || error.networkResponse.data == null) {
+            return "Đã xảy ra lỗi";
+        }
+        String responseBody = new String(error.networkResponse.data, StandardCharsets.UTF_8);
+        try {
+            JSONObject obj = new JSONObject(responseBody);
+            String message = obj.optString("message");
+            if (!TextUtils.isEmpty(message)) {
+                return message;
+            }
+        } catch (JSONException ignored) {
+            return responseBody;
+        }
+        return responseBody;
     }
 
     @Override

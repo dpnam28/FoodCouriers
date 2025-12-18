@@ -102,7 +102,7 @@
                     android:layout_height="57dp"
                     android:layout_marginBottom="8dp"
                     android:background="@drawable/bg_button_primary"
-                    android:text="Add To Cart"
+                    android:text="@string/add_to_cart"
                     android:textAllCaps="false"
                     android:textColor="@android:color/white"
                     android:textSize="14sp"
