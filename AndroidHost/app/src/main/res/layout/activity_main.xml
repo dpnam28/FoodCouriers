@@ -159,435 +159,60 @@
 
             </androidx.cardview.widget.CardView>
 
-            <!-- Chip category (Burger / Pizza / Sandwich) -->
             <HorizontalScrollView
+                android:id="@+id/scrollViewCategory"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:overScrollMode="never"
                 android:scrollbars="none">
 
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCategories"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <!-- Selected: Burger -->
-                    <LinearLayout
-                        android:id="@+id/chipBurger"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:background="@drawable/bg_button_primary"
-                        android:gravity="center_vertical"
-                        android:paddingStart="8dp"
-                        android:paddingEnd="20dp"
-                        android:layout_marginEnd="12dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="🍔"
-                            android:textSize="24sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:text="Burger"
-                            android:textSize="18sp"
-                            android:textColor="@android:color/white" />
-                    </LinearLayout>
-
-                    <!-- Pizza -->
-                    <LinearLayout
-                        android:id="@+id/chipPizza"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:background="@drawable/bg_button_outline_primary"
-                        android:gravity="center_vertical"
-                        android:paddingStart="8dp"
-                        android:paddingEnd="20dp"
-                        android:layout_marginEnd="12dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="🍕"
-                            android:textSize="24sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:text="Pizza"
-                            android:textSize="18sp"
-                            android:textColor="#0D0D0D" />
-                    </LinearLayout>
-
-                    <!-- Sandwich -->
-                    <LinearLayout
-                        android:id="@+id/chipSandwich"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:background="@drawable/bg_button_outline_primary"
-                        android:gravity="center_vertical"
-                        android:paddingStart="8dp"
-                        android:paddingEnd="20dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="🌭"
-                            android:textSize="24sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:text="Sandwich"
-                            android:textSize="18sp"
-                            android:textColor="#0D0D0D" />
-                    </LinearLayout>
-
-                </LinearLayout>
+                    android:nestedScrollingEnabled="false"
+                    android:overScrollMode="never"
+                    tools:listitem="@layout/item_category_chip"/>
             </HorizontalScrollView>
 
             <HorizontalScrollView
+                android:id="@+id/scrollViewFood"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:overScrollMode="never"
                 android:scrollbars="none">
 
-                <LinearLayout
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvFoods"
                     android:layout_width="wrap_content"
-                    android:layout_height="210dp"
-                    android:gravity="center"
-                    android:orientation="horizontal">
-
-                    <View
-                        android:layout_width="3dp"
-                        android:layout_height="0dp"/>
-                    <!-- Card 1 -->
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="160dp"
-                        android:layout_height="200dp"
-                        android:layout_marginEnd="16dp"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="2dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:padding="8dp">
-
-                            <!-- Ảnh burger -->
-                            <ImageButton
-                                android:id="@+id/imgBurger1"
-                                android:layout_width="match_parent"
-                                android:layout_height="80dp"
-                                android:layout_marginTop="8dp"
-                                android:scaleType="centerInside"
-                                android:src="@drawable/img_burger1"
-                                android:background="@android:color/transparent"
-                                android:contentDescription="@string/burger_image" />
-
-                            <!-- Tên + mô tả -->
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:text="Chicken burger"
-                                android:textSize="15sp"
-                                android:textColor="#0D0D0D"
-                                android:maxLines="1"
-                                android:ellipsize="end" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="100 gr chicken + tomato + cheese Lettuce"
-                                android:textSize="11sp"
-                                android:textColor="#803B3B3B"
-                                android:maxLines="2"
-                                android:ellipsize="end"
-                                android:layout_marginTop="2dp" />
-
-                            <!-- Giá + nút thêm -->
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="6dp"
-                                android:orientation="horizontal"
-                                android:gravity="center_vertical"
-                                android:weightSum="1"
-                                tools:ignore="UseCompoundDrawables">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:text="$ 20.00"
-                                    android:textSize="14sp"
-                                    android:textColor="#D61355"
-                                    android:textStyle="bold" />
-
-                                <ImageView
-                                    android:id="@+id/btnAdd1"
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:src="@drawable/ic_add"
-                                    android:background="@drawable/bg_add_round"
-                                    android:padding="4dp"
-                                    android:contentDescription="@string/add_to_cart" />
-                            </LinearLayout>
-
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-
-                    <!-- Card 2 (ví dụ) -->
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="160dp"
-                        android:layout_height="200dp"
-                        android:layout_marginEnd="16dp"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="2dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:padding="8dp">
-
-                            <ImageView
-                                android:id="@+id/imgBurger2"
-                                android:layout_width="match_parent"
-                                android:layout_height="80dp"
-                                android:layout_marginTop="8dp"
-                                android:scaleType="centerInside"
-                                android:src="@drawable/img_burger2"
-                                android:contentDescription="@string/burger_image" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:text="Cheese burger"
-                                android:textSize="15sp"
-                                android:textColor="#0D0D0D"
-                                android:maxLines="1"
-                                android:ellipsize="end" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="100 gr meat + onion + tomato + Lettuce cheese"
-                                android:textSize="11sp"
-                                android:textColor="#803B3B3B"
-                                android:maxLines="2"
-                                android:ellipsize="end"
-                                android:layout_marginTop="2dp" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="6dp"
-                                android:orientation="horizontal"
-                                android:gravity="center_vertical"
-                                android:weightSum="1"
-                                tools:ignore="UseCompoundDrawables">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:text="$ 15.00"
-                                    android:textSize="14sp"
-                                    android:textColor="#D61355"
-                                    android:textStyle="bold" />
-
-                                <ImageView
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:src="@drawable/ic_add"
-                                    android:background="@drawable/bg_add_round"
-                                    android:padding="4dp"
-                                    android:contentDescription="@string/add_to_cart" />
-                            </LinearLayout>
-
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="160dp"
-                        android:layout_height="200dp"
-                        android:layout_marginEnd="16dp"
-                        app:cardCornerRadius="10dp"
-                        app:cardElevation="2dp">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:orientation="vertical"
-                            android:padding="8dp">
-
-                            <ImageView
-                                android:layout_width="match_parent"
-                                android:layout_height="80dp"
-                                android:layout_marginTop="8dp"
-                                android:scaleType="centerInside"
-                                android:src="@drawable/img_burger2"
-                                android:contentDescription="@string/burger_image" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:text="Cheese burger"
-                                android:textSize="15sp"
-                                android:textColor="#0D0D0D"
-                                android:maxLines="1"
-                                android:ellipsize="end" />
-
-                            <TextView
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="100 gr meat + onion + tomato + Lettuce cheese"
-                                android:textSize="10sp"
-                                android:textColor="#803B3B3B"
-                                android:maxLines="2"
-                                android:ellipsize="end"
-                                android:layout_marginTop="2dp"
-                                tools:ignore="SmallSp" />
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="6dp"
-                                android:orientation="horizontal"
-                                android:gravity="center_vertical"
-                                android:weightSum="1"
-                                tools:ignore="UseCompoundDrawables">
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:text="$ 15.00"
-                                    android:textSize="14sp"
-                                    android:textColor="#D61355"
-                                    android:textStyle="bold" />
-
-                                <ImageView
-                                    android:id="@+id/btnAdd2"
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:src="@drawable/ic_add"
-                                    android:background="@drawable/bg_add_round"
-                                    android:padding="4dp"
-                                    android:contentDescription="@string/add_to_cart" />
-                            </LinearLayout>
-
-                        </LinearLayout>
-                    </androidx.cardview.widget.CardView>
-                </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:overScrollMode="never"
+                    tools:listitem="@layout/item_food_card"/>
             </HorizontalScrollView>
 
-            <!-- Popular Meal Menu header -->
-            <LinearLayout
-                android:id="@+id/headerPopular"
+            <ProgressBar
+                android:id="@+id/progressFoods"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp"
+                android:indeterminate="true"
+                android:indeterminateTint="@color/primary"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/tvEmptyFoods"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
-                android:layout_marginTop="24dp">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Popular Meal Menu"
-                    android:textColor="#000000"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="See All"
-                        android:textSize="12sp"
-                        android:textColor="#803B3B3B" />
-                </LinearLayout>
-            </LinearLayout>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardPepperPizza"
-                android:layout_width="match_parent"
-                android:layout_height="87dp"
-                android:layout_marginTop="8dp"
-                app:cardCornerRadius="7dp"
-                app:cardElevation="2dp">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="8dp">
-
-                    <ImageView
-                        android:id="@+id/imgPepperPizza"
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/img_pepper_pizza"
-                        android:scaleType="centerCrop"
-                        android:background="@drawable/bg_button_secondary"
-                        android:contentDescription="@string/pizza" />
-
-                    <TextView
-                        android:id="@+id/txtPizzaName"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toEndOf="@id/imgPepperPizza"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginTop="4dp"
-                        android:text="Pepper Pizza"
-                        android:textColor="#000000"
-                        android:textSize="15sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:id="@+id/txtPizzaDesc"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_toEndOf="@id/imgPepperPizza"
-                        android:layout_below="@id/txtPizzaName"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginTop="2dp"
-                        android:text="5kg box of Pizza"
-                        android:textSize="14sp"
-                        android:textColor="#803B3B3B" />
-
-                    <TextView
-                        android:id="@+id/txtPizzaPrice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_centerVertical="true"
-                        android:text="$15"
-                        android:textSize="22sp"
-                        android:textColor="#D61355"
-                        android:textStyle="bold" />
-
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="@string/no_food_placeholder"
+                android:textColor="@color/gray"
+                android:textSize="14sp"
+                android:visibility="gone"/>
 
             <View
                 android:layout_width="match_parent"
