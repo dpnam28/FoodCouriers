@@ -12,7 +12,7 @@ public interface RestaurantMapper {
 
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "user", ignore = true)
-    @Mapping(target = "description", ignore = true)
+    @Mapping(target = "description", source = "description")
     @Mapping(target = "bannerImage", ignore = true)
     @Mapping(target = "orders", ignore = true)
     @Mapping(target = "foods", ignore = true)
