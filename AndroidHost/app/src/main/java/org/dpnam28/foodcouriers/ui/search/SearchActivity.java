@@ -28,7 +28,7 @@ import java.util.List;
 
 public class SearchActivity extends AppCompatActivity implements SearchContract.View {
 
-    public static final String EXTRA_INITIAL_QUERY = "extra_initial_query";
+    public static final String QUERY = "query";
 
     private Spinner spinnerType;
     private EditText edtKeyword;
@@ -53,7 +53,7 @@ public class SearchActivity extends AppCompatActivity implements SearchContract.
         setupList();
         setupSearchHandlers();
 
-        String initialQuery = getIntent().getStringExtra(EXTRA_INITIAL_QUERY);
+        String initialQuery = getIntent().getStringExtra(QUERY);
         if (!TextUtils.isEmpty(initialQuery)) {
             edtKeyword.setText(initialQuery);
             edtKeyword.setSelection(initialQuery.length());

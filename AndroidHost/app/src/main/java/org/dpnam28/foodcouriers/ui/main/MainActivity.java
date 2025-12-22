@@ -14,6 +14,7 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,7 +29,8 @@ import org.dpnam28.foodcouriers.utils.ToastUtils;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements CategoryAdapter.OnCategoryClickListener, FoodAdapter.OnFoodClickListener, MainContract.View {
+public class MainActivity extends AppCompatActivity implements CategoryAdapter.OnCategoryClickListener,
+        FoodAdapter.OnFoodClickListener, MainContract.View {
 
     private LinearLayout navHome, navCart, navProfile, navMenu, navHistory;
     private NestedScrollView scrollContentMain;
@@ -87,7 +89,7 @@ public class MainActivity extends AppCompatActivity implements CategoryAdapter.O
         rvCategories.setNestedScrollingEnabled(false);
 
         foodAdapter = new FoodAdapter(this);
-        rvFoods.setLayoutManager(new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false));
+        rvFoods.setLayoutManager(new GridLayoutManager(this, 2));
         rvFoods.setAdapter(foodAdapter);
         rvFoods.setNestedScrollingEnabled(false);
     }
@@ -127,6 +129,18 @@ public class MainActivity extends AppCompatActivity implements CategoryAdapter.O
         }
     }
 
+    private void openSearchActivity() {
+        Intent intent = new Intent(this, SearchActivity.class);
+        intent.putExtra(SearchActivity.QUERY, edtSearch.getText().toString().trim());
+        startActivity(intent);
+    }
+
+    private void updateCategorySelection(long categoryId) {
+        if (categoryId == selectedCategoryId) return;
+        selectedCategoryId = categoryId;
+        categoryAdapter.setSelectedCategory(categoryId);
+    }
+
     @Override
     public void onCategoryClicked(CategoryItem item) {
         if (item != null) {
@@ -141,18 +155,6 @@ public class MainActivity extends AppCompatActivity implements CategoryAdapter.O
         Intent intent = new Intent(this, FoodDetailActivity.class);
         intent.putExtra(FoodDetailActivity.EXTRA_FOOD_ID, item.getId());
         startActivity(intent);
-    }
-
-    private void openSearchActivity() {
-        Intent intent = new Intent(this, SearchActivity.class);
-        intent.putExtra(SearchActivity.EXTRA_INITIAL_QUERY, edtSearch.getText().toString().trim());
-        startActivity(intent);
-    }
-
-    private void updateCategorySelection(long categoryId) {
-        if (categoryId == selectedCategoryId) return;
-        selectedCategoryId = categoryId;
-        categoryAdapter.setSelectedCategory(categoryId);
     }
 
     @Override

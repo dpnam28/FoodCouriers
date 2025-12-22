@@ -1,4 +1,4 @@
-package org.dpnam28.foodcouriers.ui.menu;
+package org.dpnam28.foodcouriers.ui.foodeditor;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;

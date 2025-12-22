@@ -23,8 +23,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginTop="16dp"
-            android:paddingStart="24dp"
-            android:paddingEnd="24dp">
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp">
 
             <LinearLayout
                 android:id="@+id/topBar"
@@ -142,39 +142,23 @@
 
             </androidx.cardview.widget.CardView>
 
-            <HorizontalScrollView
-                android:id="@+id/scrollViewCategory"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCategories"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
+                android:nestedScrollingEnabled="false"
                 android:overScrollMode="never"
-                android:scrollbars="none">
+                tools:listitem="@layout/item_category_chip"/>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvCategories"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false"
-                    android:overScrollMode="never"
-                    tools:listitem="@layout/item_category_chip"/>
-            </HorizontalScrollView>
-
-            <HorizontalScrollView
-                android:id="@+id/scrollViewFood"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvFoods"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:nestedScrollingEnabled="false"
                 android:overScrollMode="never"
-                android:scrollbars="none">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvFoods"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:nestedScrollingEnabled="false"
-                    android:overScrollMode="never"
-                    tools:listitem="@layout/item_food_card"/>
-            </HorizontalScrollView>
+                tools:listitem="@layout/item_food_card"/>
 
             <ProgressBar
                 android:id="@+id/progressFoods"

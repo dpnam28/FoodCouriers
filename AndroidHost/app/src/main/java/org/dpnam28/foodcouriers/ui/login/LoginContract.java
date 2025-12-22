@@ -2,9 +2,6 @@ package org.dpnam28.foodcouriers.ui.login;
 
 public class LoginContract {
 
-    private LoginContract() {
-    }
-
     public interface View {
         void showLoading(boolean isLoading);
         void onRegisterSuccess();

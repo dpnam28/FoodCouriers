@@ -1,5 +1,6 @@
 package org.dpnam28.foodcouriers.ui.main;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         this.listener = listener;
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void setItems(List<FoodItem> foods) {
         items.clear();
         if (foods != null) {
@@ -63,7 +65,7 @@ public class FoodAdapter extends RecyclerView.Adapter<FoodAdapter.FoodViewHolder
         return items.size();
     }
 
-    class FoodViewHolder extends RecyclerView.ViewHolder {
+    public class FoodViewHolder extends RecyclerView.ViewHolder {
         private final ImageView imgFood;
         private final TextView tvName;
         private final TextView tvDescription;

@@ -29,10 +29,6 @@ public class MainPresenter implements MainContract.Presenter {
 
     @Override
     public void loadInitialData() {
-        loadCategories();
-    }
-
-    private void loadCategories() {
         if (view == null) return;
         apiClient.getJson("categories",
                 response -> {
@@ -54,7 +50,6 @@ public class MainPresenter implements MainContract.Presenter {
                     view.showError(parseErrorMessage(error));
                 });
     }
-
     @Override
     public void selectCategory(long categoryId) {
         if (categoryId <= 0 || categoryId == selectedCategoryId) {

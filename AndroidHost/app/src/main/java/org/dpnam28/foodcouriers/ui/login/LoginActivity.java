@@ -144,6 +144,7 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
         presenter.login(form);
         btnLogin.setEnabled(true);
     }
+
     private String getTrimmed(EditText editText) {
         return editText.getText().toString().trim();
     }

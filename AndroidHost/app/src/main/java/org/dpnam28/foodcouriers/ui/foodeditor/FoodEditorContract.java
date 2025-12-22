@@ -1,6 +1,8 @@
-package org.dpnam28.foodcouriers.ui.menu;
+package org.dpnam28.foodcouriers.ui.foodeditor;
 
 import android.net.Uri;
+
+import androidx.annotation.NonNull;
 
 import java.util.List;
 
@@ -41,6 +43,7 @@ public class FoodEditorContract {
             return name;
         }
 
+        @NonNull
         @Override
         public String toString() {
             return name;

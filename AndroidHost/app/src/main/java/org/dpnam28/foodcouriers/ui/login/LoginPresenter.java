@@ -42,7 +42,6 @@ public class LoginPresenter implements LoginContract.Presenter {
             body.put("role", form.getRole());
             body.put("locationId", form.getLocationId());
         } catch (JSONException e) {
-            Log.e(TAG, "register: cannot build request body", e);
             view.onRegisterError("Không thể tạo dữ liệu đăng ký");
             return;
         }
@@ -72,7 +71,6 @@ public class LoginPresenter implements LoginContract.Presenter {
             body.put("email", form.getEmail());
             body.put("password", form.getPassword());
         } catch (JSONException e) {
-            Log.e(TAG, "register: cannot build request body", e);
             view.onRegisterError("Không thể tạo dữ liệu đăng ký");
             return;
         }

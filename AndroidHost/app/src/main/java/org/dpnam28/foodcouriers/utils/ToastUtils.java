@@ -49,16 +49,14 @@ public class ToastUtils {
             case TYPE_SUCCESS:
             default:
                 iconResId   = R.drawable.ic_check;
-                tintColor   = ContextCompat.getColor(activity, R.color.green); // #D61355
+                tintColor   = ContextCompat.getColor(activity, R.color.green);
                 strokeColor = tintColor;
                 break;
         }
 
-        // Đổi icon + tint
         imgIcon.setImageResource(iconResId);
         imgIcon.setColorFilter(tintColor, PorterDuff.Mode.SRC_IN);
 
-        // Đổi viền (stroke) của background
         if (root.getBackground() instanceof GradientDrawable) {
             GradientDrawable bg = (GradientDrawable) root.getBackground();
             bg.setStroke(dpToPx(activity, 1), strokeColor);

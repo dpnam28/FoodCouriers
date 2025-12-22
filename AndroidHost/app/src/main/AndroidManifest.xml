@@ -22,13 +22,13 @@
             android:name=".ui.order.OrderActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.order.SelectCourierActivity"
+            android:name=".ui.selectcourier.SelectCourierActivity"
             android:exported="false" />
         <activity
             android:name=".ui.menu.RestaurantMenuActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.menu.FoodEditorActivity"
+            android:name=".ui.foodeditor.FoodEditorActivity"
             android:exported="false" />
         <activity
             android:name=".ui.restaurant.RestaurantDetailActivity"

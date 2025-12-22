@@ -1,4 +1,4 @@
-package org.dpnam28.foodcouriers.ui.order;
+package org.dpnam28.foodcouriers.ui.selectcourier;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -29,7 +29,7 @@ public class SelectCourierActivity extends AppCompatActivity implements SelectCo
     private TextView tvEmpty;
     private ProgressBar progressBar;
     private CourierAdapter adapter;
-
+    private ImageButton btnBack;
     private SelectCourierContract.Presenter presenter;
     private long orderId;
     private long restaurantId;
@@ -51,14 +51,13 @@ public class SelectCourierActivity extends AppCompatActivity implements SelectCo
             finish();
             return;
         }
-
+        btnBack.setOnClickListener(v -> finish());
         presenter = new SelectCourierPresenter(this, this);
         presenter.loadCouriers(location);
     }
 
     private void assignViews() {
-        ImageButton btnBack = findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(v -> finish());
+        btnBack = findViewById(R.id.btnBack);
         listCouriers = findViewById(R.id.listCouriers);
         tvEmpty = findViewById(R.id.tvEmpty);
         progressBar = findViewById(R.id.progressCouriers);

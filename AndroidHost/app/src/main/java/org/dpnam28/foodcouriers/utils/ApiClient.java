@@ -34,10 +34,6 @@ public class ApiClient {
         return instance;
     }
 
-    public String getBaseUrl() {
-        return BASE_URL;
-    }
-
     public void addToRequestQueue(Request<?> request) {
         request.setTag(ApiClient.class.getSimpleName());
         requestQueue.add(request);

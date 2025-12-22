@@ -1,4 +1,4 @@
-package org.dpnam28.foodcouriers.ui.order;
+package org.dpnam28.foodcouriers.ui.selectcourier;
 
 import android.view.LayoutInflater;
 import android.view.View;

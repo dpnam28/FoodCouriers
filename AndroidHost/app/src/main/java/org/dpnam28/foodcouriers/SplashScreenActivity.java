@@ -15,8 +15,6 @@ import org.dpnam28.foodcouriers.ui.main.MainActivity;
 @SuppressLint("CustomSplashScreen")
 public class SplashScreenActivity extends AppCompatActivity {
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
