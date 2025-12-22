@@ -127,6 +127,9 @@ public class MainActivity extends AppCompatActivity implements CategoryAdapter.O
             navCart.setVisibility(View.VISIBLE);
             navMenu.setVisibility(View.GONE);
         }
+        if("ROLE_COURIER".equals(userRole)){
+            navCart.setVisibility(View.GONE);
+        }
     }
 
     private void openSearchActivity() {

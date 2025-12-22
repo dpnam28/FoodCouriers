@@ -7,9 +7,6 @@ import androidx.annotation.NonNull;
 import java.util.List;
 
 public class FoodEditorContract {
-
-    private FoodEditorContract() {}
-
     public interface View {
         void showLoading(boolean loading);
         void onCategoriesLoaded(List<CategoryOption> categories);

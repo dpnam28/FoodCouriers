@@ -19,6 +19,7 @@ import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
 
 import com.bumptech.glide.Glide;
 
@@ -43,7 +44,7 @@ public class FoodEditorActivity extends AppCompatActivity implements FoodEditorC
     private TextView btnChooseImage;
     private TextView tvTitle;
     private ProgressBar progressBar;
-
+    private AppCompatButton btnSaveFood;
     private FoodEditorContract.Presenter presenter;
     private Uri selectedImageUri;
     private final List<FoodEditorContract.CategoryOption> categories = new ArrayList<>();
@@ -77,7 +78,7 @@ public class FoodEditorActivity extends AppCompatActivity implements FoodEditorC
         ImageButton btnBack = findViewById(R.id.btnBackFoodEditor);
         btnBack.setOnClickListener(v -> finish());
         btnChooseImage.setOnClickListener(v -> imagePickerLauncher.launch("image/*"));
-        findViewById(R.id.btnSaveFood).setOnClickListener(v -> onSaveClicked());
+        btnSaveFood.setOnClickListener(v -> onSaveClicked());
         switchActive.setOnCheckedChangeListener((view, isChecked) -> {
             if (isChecked) {
                 foodStatus.setText("Đang bán");
@@ -103,6 +104,7 @@ public class FoodEditorActivity extends AppCompatActivity implements FoodEditorC
         tvTitle = findViewById(R.id.tvFoodEditorTitle);
         progressBar = findViewById(R.id.progressFoodEditor);
         foodStatus = findViewById(R.id.foodStatus);
+        btnSaveFood = findViewById(R.id.btnSaveFood);
     }
 
     private void setupCategorySpinner() {
@@ -139,6 +141,7 @@ public class FoodEditorActivity extends AppCompatActivity implements FoodEditorC
             showLoading(false);
             return;
         }
+        btnChooseImage.setEnabled(false);
         FoodEditorContract.CategoryOption option = (FoodEditorContract.CategoryOption) spinnerCategory.getSelectedItem();
 
         FoodEditorContract.Form form = new FoodEditorContract.Form(
@@ -210,6 +213,7 @@ public class FoodEditorActivity extends AppCompatActivity implements FoodEditorC
 
     @Override
     public void onSaveSuccess() {
+        btnChooseImage.setEnabled(true);
         ToastUtils.showTopToast(this, "Cập nhật thành công", ToastUtils.TYPE_SUCCESS);
         setResult(RESULT_OK, new Intent());
         finish();
@@ -217,6 +221,7 @@ public class FoodEditorActivity extends AppCompatActivity implements FoodEditorC
 
     @Override
     public void onError(String message) {
+        btnChooseImage.setEnabled(true);
         if (TextUtils.isEmpty(message)) {
             message = "Đã xảy ra lỗi";
         }
