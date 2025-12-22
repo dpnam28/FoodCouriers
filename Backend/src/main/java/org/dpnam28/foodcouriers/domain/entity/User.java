@@ -11,6 +11,7 @@ import java.util.List;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +32,8 @@ public class User {
     @Column(nullable = false)
     private String address;
 
-    @Column(nullable = false, columnDefinition = "VARCHAR(255) CHECK (role IN ('ROLE_COURIER', 'ROLE_CUSTOMER', 'ROLE_RESTAURANT'))")
+    @Column(nullable = false, columnDefinition = "VARCHAR(255) CHECK " +
+            "(role IN ('ROLE_COURIER', 'ROLE_CUSTOMER', 'ROLE_RESTAURANT'))")
     private String role;
 
     @ManyToOne

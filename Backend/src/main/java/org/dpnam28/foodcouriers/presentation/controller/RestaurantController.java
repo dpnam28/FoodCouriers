@@ -1,7 +1,6 @@
 package org.dpnam28.foodcouriers.presentation.controller;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.dpnam28.foodcouriers.domain.dto.ApiResponse;
 import org.dpnam28.foodcouriers.domain.entity.Food;
 import org.dpnam28.foodcouriers.domain.entity.Restaurant;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Slf4j
 @RestController
 @RequestMapping("/restaurants")
 @RequiredArgsConstructor

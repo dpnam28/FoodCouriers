@@ -1,47 +1,42 @@
 package org.dpnam28.foodcouriers.presentation.mapper;
 
-import lombok.RequiredArgsConstructor;
 import org.dpnam28.foodcouriers.domain.entity.Courier;
 import org.dpnam28.foodcouriers.domain.entity.Customer;
 import org.dpnam28.foodcouriers.domain.entity.Order;
 import org.dpnam28.foodcouriers.domain.entity.OrderDetail;
-import org.dpnam28.foodcouriers.presentation.dto.order.*;
-import org.springframework.stereotype.Component;
+import org.dpnam28.foodcouriers.presentation.dto.order.CustomerOrderSummary;
+import org.dpnam28.foodcouriers.presentation.dto.order.CourierOrderSummary;
+import org.dpnam28.foodcouriers.presentation.dto.order.OrderCreateRequest;
+import org.dpnam28.foodcouriers.presentation.dto.order.OrderDetailResponse;
+import org.dpnam28.foodcouriers.presentation.dto.order.OrderResponse;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
-@Component
-@RequiredArgsConstructor
-public class OrderMapper {
+@Mapper(componentModel = "spring", uses = {FoodMapper.class, RestaurantMapper.class})
+public interface OrderMapper {
 
-    private final FoodMapper foodMapper;
-    private final RestaurantMapper restaurantMapper;
+    @Mapping(target = "restaurant", source = "restaurant")
+    @Mapping(target = "customer", expression = "java(toCustomerSummary(order.getCustomer()))")
+    @Mapping(target = "courier", expression = "java(toCourierSummary(order.getCourier()))")
+    OrderResponse toResponse(Order order);
 
-    public OrderResponse toResponse(Order order) {
-        if (order == null) {
-            return null;
-        }
-        return OrderResponse.builder()
-                .id(order.getId())
-                .totalPrice(order.getTotalPrice())
-                .status(order.getStatus())
-                .restaurant(restaurantMapper.toRestaurantResponse(order.getRestaurant()))
-                .customer(toCustomerSummary(order.getCustomer()))
-                .courier(toCourierSummary(order.getCourier()))
-                .orderDetails(toDetailResponses(order.getOrderDetails()))
-                .build();
-    }
+    List<OrderResponse> toResponses(List<Order> orders);
 
-    public List<OrderResponse> toResponses(List<Order> orders) {
-        if (orders == null) {
-            return Collections.emptyList();
-        }
-        return orders.stream().map(this::toResponse).collect(Collectors.toList());
-    }
+    @Mapping(target = "food", source = "food")
+    OrderDetailResponse toOrderDetailResponse(OrderDetail detail);
 
-    private CustomerOrderSummary toCustomerSummary(Customer customer) {
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "totalPrice", ignore = true)
+    @Mapping(target = "orderDetails", ignore = true)
+    @Mapping(target = "status", source = "status")
+    @Mapping(target = "restaurant.id", source = "restaurantId")
+    @Mapping(target = "customer.id", source = "customerId")
+    @Mapping(target = "courier.id", source = "courierId")
+    Order toOrder(OrderCreateRequest request);
+
+    default CustomerOrderSummary toCustomerSummary(Customer customer) {
         if (customer == null || customer.getUser() == null) {
             return null;
         }
@@ -53,7 +48,7 @@ public class OrderMapper {
                 .build();
     }
 
-    private CourierOrderSummary toCourierSummary(Courier courier) {
+    default CourierOrderSummary toCourierSummary(Courier courier) {
         if (courier == null || courier.getUser() == null) {
             return null;
         }
@@ -63,19 +58,5 @@ public class OrderMapper {
                 .phoneNumber(courier.getUser().getPhoneNumber())
                 .isAvailable(courier.getIsAvailable())
                 .build();
-    }
-
-    private List<OrderDetailResponse> toDetailResponses(List<OrderDetail> details) {
-        if (details == null) {
-            return Collections.emptyList();
-        }
-        return details.stream()
-                .map(detail -> OrderDetailResponse.builder()
-                        .id(detail.getId())
-                        .quantity(detail.getQuantity())
-                        .totalPrice(detail.getTotalPrice())
-                        .food(foodMapper.toFoodResponse(detail.getFood()))
-                        .build())
-                .collect(Collectors.toList());
     }
 }

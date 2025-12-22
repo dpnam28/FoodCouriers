@@ -2,7 +2,6 @@ package org.dpnam28.foodcouriers.presentation.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.dpnam28.foodcouriers.domain.dto.ApiResponse;
 import org.dpnam28.foodcouriers.domain.entity.Category;
 import org.dpnam28.foodcouriers.domain.entity.Food;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Slf4j
 @RestController
 @RequestMapping("/categories")
 @RequiredArgsConstructor

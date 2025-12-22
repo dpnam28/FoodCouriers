@@ -73,8 +73,7 @@ public class CartItemUseCase {
         if (userId == null) {
             throw new AppException(ErrorCode.ARGUMENT_IS_REQUIRED, ErrorCode.ARGUMENT_IS_REQUIRED.formatMessage("ID người dùng"));
         }
-        User user = userRepository.findById(userId);
-        if (user == null) {
+        if(!userRepository.existsById(userId)){
             throw new AppException(ErrorCode.USER_NOT_FOUND);
         }
         cartItemRepository.deleteByUserId(userId);

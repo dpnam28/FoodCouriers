@@ -26,7 +26,8 @@ public class OrderController {
 
     @PostMapping
     public ApiResponse<OrderResponse> createOrder(@Valid @RequestBody OrderCreateRequest request) {
-        Order order = orderUseCase.createOrder(request);
+        Order orderRequest = orderMapper.toOrder(request);
+        Order order = orderUseCase.createOrder(orderRequest, request.getCartItemIds());
         return ApiResponse.apiResponseSuccess("Tạo đơn hàng thành công", orderMapper.toResponse(order));
     }
 

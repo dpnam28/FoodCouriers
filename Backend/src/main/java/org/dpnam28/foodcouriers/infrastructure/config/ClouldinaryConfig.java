@@ -15,5 +15,4 @@ public class ClouldinaryConfig {
     public Cloudinary cloudinary() {
         return new Cloudinary(cloudinaryUrl);
     }
-    
 }

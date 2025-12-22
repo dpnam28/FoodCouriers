@@ -2,7 +2,6 @@ package org.dpnam28.foodcouriers.presentation.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.dpnam28.foodcouriers.domain.dto.ApiResponse;
 import org.dpnam28.foodcouriers.domain.entity.Food;
 import org.dpnam28.foodcouriers.presentation.dto.food.FoodCreateRequest;
@@ -17,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-@Slf4j
 @RestController
 @RequestMapping("/foods")
 @RequiredArgsConstructor
@@ -37,7 +35,7 @@ public class FoodController {
                     .build();
         }
         try {
-            Food food = foodUseCase.createFood(request, image);
+            Food food = foodUseCase.createFood(foodMapper.toFood(request), image);
             return ApiResponse.apiResponseSuccess("Create food succeeded", foodMapper.toFoodResponse(food));
         } finally {
             createFoodInProgress.set(false);
@@ -48,7 +46,7 @@ public class FoodController {
     public ApiResponse<FoodResponse> updateFood(@PathVariable Long id,
                                                 @Valid @ModelAttribute FoodUpdateRequest request,
                                                 @RequestPart(value = "image", required = false) MultipartFile image) {
-        Food food = foodUseCase.updateFood(id, request, image);
+        Food food = foodUseCase.updateFood(id, foodMapper.toFood(request), image);
         return ApiResponse.apiResponseSuccess("Update food succeeded", foodMapper.toFoodResponse(food));
     }
 

@@ -2,14 +2,12 @@ package org.dpnam28.foodcouriers.presentation.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.dpnam28.foodcouriers.domain.dto.ApiResponse;
 import org.dpnam28.foodcouriers.presentation.dto.courier.CourierAvailabilityRequest;
 import org.dpnam28.foodcouriers.presentation.dto.courier.CourierAvailabilityResponse;
 import org.dpnam28.foodcouriers.usecase.CourierUseCase;
 import org.springframework.web.bind.annotation.*;
 
-@Slf4j
 @RestController
 @RequestMapping("/couriers")
 @RequiredArgsConstructor

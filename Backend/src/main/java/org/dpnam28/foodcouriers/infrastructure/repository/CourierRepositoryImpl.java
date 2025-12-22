@@ -9,7 +9,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 interface JpaCourierRepository extends JpaRepository<Courier, Long> {
-    @Query("SELECT c FROM Courier c WHERE (:location IS NULL OR :location = '' OR LOWER(c.user.location.city) LIKE LOWER(CONCAT('%', :location, '%')))")
+    @Query("SELECT c FROM Courier c WHERE (:location IS NULL OR :location = '' " +
+            "OR LOWER(c.user.location.city) LIKE LOWER(CONCAT('%', :location, '%')))")
     java.util.List<Courier> searchByLocation(@Param("location") String location);
 }
 
@@ -32,5 +33,4 @@ public class CourierRepositoryImpl implements CourierRepository {
     public java.util.List<Courier> findByLocation(String location) {
         return jpaCourierRepository.searchByLocation(location);
     }
-
 }

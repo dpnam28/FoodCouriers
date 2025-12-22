@@ -40,4 +40,9 @@ public class UserRepositoryImpl implements UserRepository {
         return jpaUserRepository.findById(id)
                 .orElseThrow(() -> new AppException(ErrorCode.USER_NOT_FOUND));
     }
+
+    @Override
+    public boolean existsById(Long id) {
+        return jpaUserRepository.existsById(id);
+    }
 }

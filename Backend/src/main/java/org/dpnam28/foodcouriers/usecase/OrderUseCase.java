@@ -5,7 +5,6 @@ import org.dpnam28.foodcouriers.domain.entity.*;
 import org.dpnam28.foodcouriers.domain.exception.AppException;
 import org.dpnam28.foodcouriers.domain.exception.ErrorCode;
 import org.dpnam28.foodcouriers.domain.repository.*;
-import org.dpnam28.foodcouriers.presentation.dto.order.OrderCreateRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -21,25 +20,32 @@ public class OrderUseCase {
     private final CourierRepository courierRepository;
     private final CartItemRepository cartItemRepository;
 
-    public Order createOrder(OrderCreateRequest request) {
-        Restaurant restaurant = restaurantRepository.findById(request.getRestaurantId());
+    public Order createOrder(Order order, List<Long> cartItemIds) {
+        Long restaurantId = order != null && order.getRestaurant() != null ? order.getRestaurant().getId() : null;
+        Long customerId = order != null && order.getCustomer() != null ? order.getCustomer().getId() : null;
+        Long courierId = order != null && order.getCourier() != null ? order.getCourier().getId() : null;
+
+        Restaurant restaurant = restaurantRepository.findById(restaurantId);
         if (restaurant == null) {
             throw new AppException(ErrorCode.RESTAURANT_NOT_FOUND);
         }
-        Customer customer = customerRepository.findById(request.getCustomerId());
+        Customer customer = customerRepository.findById(customerId);
         if (customer == null) {
             throw new AppException(ErrorCode.CUSTOMER_NOT_FOUND);
         }
         Courier courier = null;
-        if (request.getCourierId() != null) {
-            courier = courierRepository.findById(request.getCourierId());
+        if (courierId != null) {
+            courier = courierRepository.findById(courierId);
             if (courier == null) {
                 throw new AppException(ErrorCode.COURIER_NOT_FOUND);
             }
         }
 
-        List<CartItem> cartItems = cartItemRepository.findByIds(request.getCartItemIds());
-        if (cartItems.isEmpty() || cartItems.size() != request.getCartItemIds().size()) {
+        if (cartItemIds == null || cartItemIds.isEmpty()) {
+            throw new AppException(ErrorCode.CART_ITEM_NOT_FOUND);
+        }
+        List<CartItem> cartItems = cartItemRepository.findByIds(cartItemIds);
+        if (cartItems.isEmpty() || cartItems.size() != cartItemIds.size()) {
             throw new AppException(ErrorCode.CART_ITEM_NOT_FOUND);
         }
 
@@ -58,27 +64,28 @@ public class OrderUseCase {
         double itemsTotal = cartItems.stream()
                 .mapToDouble(item -> item.getTotalPrice() != null ? item.getTotalPrice() : 0.0)
                 .sum();
-        Order order = Order.builder()
+        assert order != null;
+        Order newOrder = Order.builder()
                 .restaurant(restaurant)
                 .customer(customer)
                 .courier(courier)
-                .status(request.getStatus() == null ? OrderStatus.PENDING : request.getStatus())
+                .status(order.getStatus() == null ? OrderStatus.PENDING : order.getStatus())
                 .totalPrice(itemsTotal)
                 .build();
 
         List<OrderDetail> details = new ArrayList<>();
         for (CartItem cartItem : cartItems) {
             OrderDetail detail = OrderDetail.builder()
-                    .order(order)
+                    .order(newOrder)
                     .food(cartItem.getFood())
                     .quantity(cartItem.getQuantity())
                     .totalPrice(cartItem.getTotalPrice())
                     .build();
             details.add(detail);
         }
-        order.setOrderDetails(details);
+        newOrder.setOrderDetails(details);
 
-        return orderRepository.save(order);
+        return orderRepository.save(newOrder);
     }
 
     public List<Order> getOrdersForRestaurant(Long restaurantId) {
@@ -117,12 +124,9 @@ public class OrderUseCase {
 
     public Order cancelOrder(Long orderId, Long customerId, Long restaurantId) {
         Order order = getOrderOrThrow(orderId);
-        boolean authorized = false;
-        if (customerId != null && order.getCustomer() != null
-                && order.getCustomer().getId().equals(customerId)) {
-            authorized = true;
-        }
-        if (restaurantId != null && order.getRestaurant() != null
+        boolean authorized = order.getCustomer() != null
+                && order.getCustomer().getId().equals(customerId);
+        if (order.getRestaurant() != null
                 && order.getRestaurant().getId().equals(restaurantId)) {
             authorized = true;
         }

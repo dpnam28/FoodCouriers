@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Slf4j
 @RestController
 @RequestMapping("/locations")
 @RequiredArgsConstructor
@@ -24,13 +23,4 @@ public class LocationController {
                 locationMapper.toListLocationResponse(locationUseCase.getAll());
         return ApiResponse.apiResponseSuccess("Get all locations succeeded", locations);
     }
-
-//    @PutMapping("/{id}")
-//    public ApiResponse<LocationResponse> update(@PathVariable Long id,
-//                                                @RequestBody @Valid LocationUpdateRequest request) {
-//        Location location = locationMapper.toLocation(request);
-//        Location locationUpdated = locationUseCase.update(id, location);
-//        LocationResponse locationResponse = locationMapper.toLocationResponse(locationUpdated);
-//        return ApiResponse.apiResponseSuccess("Update location succeeded", locationResponse);
-//    }
 }
