@@ -1,5 +1,6 @@
 import java.util.Properties
 import java.io.FileInputStream
+import org.gradle.api.tasks.testing.Test
 
 plugins {
     alias(libs.plugins.android.application)
@@ -45,6 +46,13 @@ android {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
+    packaging {
+        resources.excludes.add("META-INF/LICENSE.md")
+        resources.excludes.add("META-INF/LICENSE-notice.md")
+        resources.excludes.add("META-INF/LICENSE")
+        resources.excludes.add("META-INF/NOTICE")
+    }
 }
 
 dependencies {
@@ -56,8 +64,12 @@ dependencies {
     implementation(libs.volley)
     implementation(libs.glide)
     implementation(libs.recyclerview)
+    testImplementation(libs.junit.jupiter)
     annotationProcessor(libs.glide.compiler)
     testImplementation(libs.junit)
-    androidTestImplementation(libs.ext.junit)
-    androidTestImplementation(libs.espresso.core)
+    testImplementation(libs.ext.junit)
+    testImplementation(libs.espresso.core)
+    testImplementation(libs.java.client)
+    testImplementation(libs.mockito.inline)
+    testImplementation(libs.json)
 }

@@ -110,6 +110,21 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
             ToastUtils.showTopToast(this, "Email không hợp lệ", ToastUtils.TYPE_ERROR);
             return;
         }
+        
+        if (password.length() < 6) {
+            ToastUtils.showTopToast(this, "Mật khẩu phải có ít nhất 6 ký tự", ToastUtils.TYPE_ERROR);
+            return;
+        }
+        
+        if (fullName.length() < 2 || fullName.length() > 50) {
+            ToastUtils.showTopToast(this, "Họ tên phải có từ 2 đến 50 ký tự", ToastUtils.TYPE_ERROR);
+            return;
+        }
+        
+        if (!phoneNumber.matches("\\d{10}")) {
+            ToastUtils.showTopToast(this, "Số điện thoại không hợp lệ", ToastUtils.TYPE_ERROR);
+            return;
+        }
 
         LoginContract.UserForm form = new LoginContract.UserForm(
                 fullName,
@@ -136,6 +151,11 @@ public class LoginActivity extends AppCompatActivity implements LoginContract.Vi
 
         if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             ToastUtils.showTopToast(this, "Email không hợp lệ", ToastUtils.TYPE_ERROR);
+            return;
+        }
+
+        if(password.length() < 6){
+            ToastUtils.showTopToast(this, "Mật khẩu phải có ít nhất 6 ký tự", ToastUtils.TYPE_ERROR);
             return;
         }
 
